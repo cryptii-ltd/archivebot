@@ -1,0 +1,27 @@
+.channels {
+    align-items: flex-start;
+    display: flex;
+    gap: .25rem;
+    flex-direction: column;
+    height: 100%;
+    justify-content: flex-start;
+    width: 100%;
+
+    h3 {
+        padding: .5rem 0;
+    }
+}
+
+.channel {
+    border-radius: 1rem;
+    cursor: pointer;
+    padding: 1rem;
+    transition: all 250ms ease;
+    user-select: none;
+    width: 100%;
+}
+
+.channel[data-active="true"],
+.channel:hover {
+    background-color: var(--clr-element-dark);
+}

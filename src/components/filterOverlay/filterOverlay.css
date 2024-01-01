@@ -1,0 +1,13 @@
+.filterOverlay {
+    background-color: var(--clr-element-glass);
+    backdrop-filter: blur(60px);
+    border: solid 2px var(--clr-element);
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    padding: 1rem;
+    position: absolute;
+    top: 10.75rem;
+    width: 16.25rem;
+}
