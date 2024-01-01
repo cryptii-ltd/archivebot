@@ -6,5 +6,5 @@ interface LogoProps {
 }
 
 export default function Logo(props: LogoProps) {
-  return <img src={!props.isCollapsed ? Brand : BrandCollapsed} />
+  return <img alt='CRYPTII Archive Bot Logo' src={!props.isCollapsed ? Brand : BrandCollapsed} />
 }

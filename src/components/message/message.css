@@ -1,0 +1,60 @@
+.message {
+    align-items: flex-start;
+    border-radius: 1rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-start;
+    padding: 1rem;
+    transition: all 300ms ease;
+    width: 100%;
+
+    .content {
+        align-items: flex-start;
+        display: flex;
+        flex-direction: column;
+        gap: .25rem;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .info {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+
+        .username {
+            font-weight: 700;
+        }
+
+        .time {
+            color: var(--clr-text-secondary);
+            font-weight: 300;
+        }
+    }
+
+    p {
+        margin: 0;
+        white-space: pre-wrap;
+    }
+
+    .profile-picture {
+        align-items: center;
+        aspect-ratio: 1/1;
+        background-color: var(--clr-element-dark);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        height: 3.5rem;
+    }
+
+    .profile-picture>img {
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+        width: 100%;
+    }
+}
+
+.message:hover {
+    background-color: var(--clr-element-dark);
+}

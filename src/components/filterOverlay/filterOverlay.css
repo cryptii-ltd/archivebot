@@ -1,5 +1,6 @@
 .filterOverlay {
     background-color: var(--clr-element-glass);
+    -webkit-backdrop-filter: blur(60px);
     backdrop-filter: blur(60px);
     border: solid 2px var(--clr-element);
     border-radius: 1rem;

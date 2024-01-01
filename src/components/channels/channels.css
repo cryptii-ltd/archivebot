@@ -17,6 +17,7 @@
     cursor: pointer;
     padding: 1rem;
     transition: all 250ms ease;
+    -webkit-user-select: none;
     user-select: none;
     width: 100%;
 }

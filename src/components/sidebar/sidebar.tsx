@@ -17,14 +17,14 @@ export default function Sidebar() {
           <Logo />
           <div className='search'>
             <input type='text' placeholder='Search messages' />
-            <IconAdjustmentsAlt onClick={() => setFilterVisible(!filterVisible)} />
+            <IconAdjustmentsAlt onClick={() => setFilterVisible(!filterVisible)} data-toggled={filterVisible} />
           </div>
 
           {filterVisible && <FilterOverlay />}
 
           <Channels channels={[{ name: 'general', isActive: true }, { name: 'dev-chat' }, { name: 'images' }, { name: 'mod-chat' }]} />
 
-          <button>Leave</button>
+          <button type='button'>Leave</button>
         </>
       ) : (
         <Logo isCollapsed={true} />

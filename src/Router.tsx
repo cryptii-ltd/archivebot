@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Messages from './pages/messages'
+import View from './pages/view'
 
 export default function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/messages' element={<Messages />}></Route>
+        <Route path='/view' element={<View />}></Route>
       </Routes>
     </BrowserRouter>
   )
