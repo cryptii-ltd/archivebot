@@ -6,7 +6,11 @@ import Logo from '../logo/logo'
 import Channels from '../channels/channels'
 import FilterOverlay from '../filterOverlay/filterOverlay'
 
-export default function Sidebar() {
+interface SidebarProps {
+  channelName: string
+}
+
+export default function Sidebar(props: SidebarProps) {
   const [filterVisible, setFilterVisible] = useState(false)
   const [collapsed, setCollapsed] = useState(false)
 
@@ -22,7 +26,7 @@ export default function Sidebar() {
 
           {filterVisible && <FilterOverlay />}
 
-          <Channels channels={[{ name: 'general', isActive: true }, { name: 'dev-chat' }, { name: 'images' }, { name: 'mod-chat' }]} />
+          <Channels channels={[{ name: props.channelName, isActive: true }]} />
 
           <button type='button'>Leave</button>
         </>

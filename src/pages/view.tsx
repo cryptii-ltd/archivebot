@@ -2,13 +2,25 @@ import './view.css'
 import Sidebar from '../components/sidebar/sidebar'
 import Message from '../components/message/message'
 
+import axios from 'axios'
+import { useEffect, useState } from 'react'
+
 export default function View() {
+  const [messageData, setMessageData] = useState([])
+
+  useEffect(() => {
+    axios.get('https://api.archive-bot.net/v1/messages/courteous-beige-parrotfish').then((response) => {
+      setMessageData(response.data.messages)
+    })
+  }, [])
+
   return (
     <>
-      <Sidebar />
+      <Sidebar channelName={'test'} />
       <div className='messages'>
-        <Message author={'Rory'} content={['Hello, world!']} date={'Today at 16:28'} avatarHash={'https://cdn.discordapp.com/avatars/316965023404785674/9fca0da230cf18401040045691831d00'} />
-        <Message author={'Mateusz'} content={['Right back at you!', 'How are you?']} date={'Today at 16:30'} avatarHash={'https://cdn.discordapp.com/avatars/173785604692246528/a_40806bba335ae784f11a98486b110e43.gif?size=128'} />
+        {messageData.map((message) => (
+          <Message author={message.author} authorID={message.author_id} avatarHash={message.avatar_hash} date={message.date} content={[message.content]} attachments={message.attachments} reactions={message.reactions} />
+        ))}
       </div>
     </>
   )

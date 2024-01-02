@@ -59,3 +59,20 @@ input:focus-visible {
 input::placeholder {
   color: var(--clr-text-placeholder)
 }
+
+::-webkit-scrollbar {
+  width: .875rem;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--clr-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--clr-element);
+  border-radius: 1rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--clr-element-light);
+}
