@@ -1,9 +1,11 @@
 .message {
     align-items: flex-start;
+    animation: 150ms fadeIn forwards ease;
     border-radius: 1rem;
     display: flex;
     gap: 1rem;
     justify-content: flex-start;
+    overflow-wrap: anywhere;
     padding: 1rem;
     transition: all 300ms ease;
     width: 100%;
@@ -46,10 +48,19 @@
         }
     }
 
-    p {
+    .mention {
+        background-color: var(--clr-text-placeholder);
+        border-radius: .1875rem;
+        cursor: pointer;
+        font-weight: 600;
+        padding: 0 .125rem;
+    }
+
+    p,
+    pre,
+    code {
         margin: 0;
         white-space: pre-wrap;
-        word-wrap: break-word;
     }
 
     .profile-picture {
@@ -71,6 +82,7 @@
     .reactions {
         align-items: center;
         display: flex;
+        flex-wrap: wrap;
         gap: .5rem;
         justify-content: flex-start;
         margin-top: .25rem;
@@ -80,4 +92,14 @@
 
 .message:hover {
     background-color: var(--clr-element-dark);
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0
+    }
+
+    100% {
+        opacity: 1;
+    }
 }

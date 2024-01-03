@@ -1,6 +1,11 @@
 import './message.css'
-import { IconUserHexagon } from '@tabler/icons-react'
+import ProfilePicture from './profilePicture'
 import Reaction from './reaction'
+
+import { useEffect, useState } from 'react'
+import Markdown from 'react-markdown'
+import rehypeRaw from 'rehype-raw'
+import escapeStringRegexp from 'escape-string-regexp'
 
 interface MessageProps {
   author: string
@@ -8,6 +13,7 @@ interface MessageProps {
   content: string
   date: number
   id: string
+  mentions: string[]
   attachments?: [
     {
       source: string
@@ -19,20 +25,27 @@ interface MessageProps {
 }
 
 export default function Message(props: MessageProps) {
+  const [content, setContent] = useState(props.content)
+
+  useEffect(() => {
+    if (props.mentions.length === 0) return
+    setContent(getMentions(props.mentions, content))
+  }, [])
+
   return (
     <div className='message'>
-      <span className='profile-picture'>{!props.avatarHash ? <IconUserHexagon /> : <img alt={props.author + "'s profile picture"} src={`https://cdn.discordapp.com/avatars/${props.authorID}/${props.avatarHash}`} />}</span>
+      <ProfilePicture author={props.author} authorID={props.authorID} avatarHash={props.avatarHash} />
       <div className='content'>
         <div className='info'>
           <span className='username'>{props.author}</span>
           <span className='time'>{ISOToContextualDate(props.date)}</span>
         </div>
         <div className='body'>
-          <p>{props.content}</p>
+          <Markdown children={content} rehypePlugins={[rehypeRaw]} />
         </div>
         <div className='attachments'>
-          {props.attachments?.map((attachment) => (
-            <img src={attachment.source} />
+          {props.attachments?.map((attachment, index) => (
+            <img src={attachment.source} key={index} />
           ))}
         </div>
         <div className='reactions'>
@@ -45,7 +58,16 @@ export default function Message(props: MessageProps) {
   )
 }
 
-export function ISOToContextualDate(ISOTime: number) {
+function getMentions(mentions: string[], content: string) {
+  mentions.map((mention) => {
+    const regex = new RegExp(`@${escapeStringRegexp(mention)}`, 'gm')
+    content = content.toString().replace(regex, `<span class="mention" username="${mention}">@${mention}</span>`)
+  })
+
+  return content
+}
+
+function ISOToContextualDate(ISOTime: number) {
   const now = new Date()
   const date = new Date(ISOTime)
 

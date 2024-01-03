@@ -2,8 +2,9 @@ import './view.css'
 import Sidebar from '../components/sidebar/sidebar'
 import Message from '../components/message/message'
 
-import axios from 'axios'
 import { useEffect, useState } from 'react'
+import axios from 'axios'
+import RenderIfVisible from 'react-render-if-visible'
 
 export default function View() {
   const [messageData, setMessageData] = useState([])
@@ -18,8 +19,10 @@ export default function View() {
     <>
       <Sidebar channelName={'test'} />
       <div className='messages'>
-        {messageData.map((message) => (
-          <Message author={message.author} authorID={message.author_id} avatarHash={message.avatar_hash} date={message.date} content={[message.content]} attachments={message.attachments} reactions={message.reactions} />
+        {messageData.map((message, index) => (
+          <RenderIfVisible stayRendered={true} key={index}>
+            <Message key={message.id} author={message.author} authorID={message.author_id} avatarHash={message.avatar_hash} date={message.date} mentions={message.mentions} content={message.content} attachments={message.attachments} reactions={message.reactions} />
+          </RenderIfVisible>
         ))}
       </div>
     </>

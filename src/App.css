@@ -60,6 +60,10 @@ input::placeholder {
   color: var(--clr-text-placeholder)
 }
 
+.renderIfVisible {
+  width: 100%;
+}
+
 ::-webkit-scrollbar {
   width: .875rem;
 }
