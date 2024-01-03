@@ -39,7 +39,12 @@
         width: 100%;
 
         .username {
+            cursor: pointer;
             font-weight: 700;
+        }
+
+        .username:hover {
+            text-decoration: underline;
         }
 
         .time {

@@ -1,3 +1,4 @@
+import './logo.css'
 import Brand from '../../assets/Logo.svg'
 import BrandCollapsed from '../../assets/LogoCryptii.svg'
 
@@ -6,5 +7,5 @@ interface LogoProps {
 }
 
 export default function Logo(props: LogoProps) {
-  return <img alt='CRYPTII Archive Bot Logo' src={!props.isCollapsed ? Brand : BrandCollapsed} />
+  return <img className='brand' alt='CRYPTII Archive Bot Logo' src={!props.isCollapsed ? Brand : BrandCollapsed} />
 }

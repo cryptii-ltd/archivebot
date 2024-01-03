@@ -18,6 +18,11 @@ body {
   height: 100dvh;
 }
 
+a:has(button) {
+  all: unset;
+  width: 100%;
+}
+
 button {
   background-color: var(--clr-element-dark);
   border: none;
@@ -59,6 +64,7 @@ input:focus-visible {
 input::placeholder {
   color: var(--clr-text-placeholder);
   font-size: .875rem;
+  user-select: none;
 }
 
 .renderIfVisible {

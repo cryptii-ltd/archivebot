@@ -1,6 +1,6 @@
 .reaction {
     align-items: center;
-    background-color: var(--clr-element-dark);
+    background-color: var(--clr-element);
     border-radius: .5rem;
     display: flex;
     gap: .5rem;

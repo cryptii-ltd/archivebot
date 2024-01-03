@@ -1,10 +1,12 @@
-import { useState } from 'react'
-
 import './sidebar.css'
 import { IconAdjustmentsAlt, IconChevronRight, IconChevronLeft } from '@tabler/icons-react'
+
 import Logo from '../logo/logo'
 import Channels from '../channels/channels'
 import FilterOverlay from '../filters/filters'
+
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 interface SidebarProps {
   channelName: string
@@ -28,7 +30,9 @@ export default function Sidebar(props: SidebarProps) {
 
           <Channels channels={[{ name: props.channelName, isActive: true }]} />
 
-          <button type='button'>Leave</button>
+          <Link to='/'>
+            <button type='button'>Leave</button>
+          </Link>
         </>
       ) : (
         <Logo isCollapsed={true} />

@@ -12,6 +12,7 @@
     position: absolute;
     top: 10.75rem;
     width: 16.25rem;
+    z-index: 1;
 }
 
 @keyframes slideInFade {

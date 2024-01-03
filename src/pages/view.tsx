@@ -12,7 +12,7 @@ interface ViewProps {
 
 export default function View(props: ViewProps) {
   const [messageData, setMessageData] = useState([])
-  const [passphrase, setPassphrase] = useState('courteous-beige-parrotfish')
+  const [passphrase, setPassphrase] = useState('prime-yellow-elk')
 
   useEffect(() => {
     axios.get(`https://api.archive-bot.net/v1/messages/${passphrase}`).then((response) => {
@@ -22,10 +22,10 @@ export default function View(props: ViewProps) {
 
   return (
     <>
-      <Sidebar channelName={'test'} />
+      <Sidebar channelName={messageData.channel_name} />
       <div className='messages'>
         {messageData.map((message, index) => (
-          <RenderIfVisible stayRendered={true} key={index}>
+          <RenderIfVisible key={index} stayRendered={true}>
             <Message key={message.id} id={message.id} author={message.author} authorID={message.author_id} avatarHash={message.avatar_hash} date={message.date} mentions={message.mentions} content={message.content} attachments={message.attachments} reactions={message.reactions} />
           </RenderIfVisible>
         ))}
