@@ -4,7 +4,7 @@ import './sidebar.css'
 import { IconAdjustmentsAlt, IconChevronRight, IconChevronLeft } from '@tabler/icons-react'
 import Logo from '../logo/logo'
 import Channels from '../channels/channels'
-import FilterOverlay from '../filterOverlay/filterOverlay'
+import FilterOverlay from '../filters/filters'
 
 interface SidebarProps {
   channelName: string

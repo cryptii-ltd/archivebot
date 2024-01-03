@@ -1,4 +1,6 @@
+import './profilePicture.css'
 import { IconUserHexagon } from '@tabler/icons-react'
+
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 

@@ -5,6 +5,7 @@
     display: flex;
     gap: 1rem;
     justify-content: flex-start;
+    line-height: 1.5rem;
     overflow-wrap: anywhere;
     padding: 1rem;
     transition: all 300ms ease;
@@ -49,11 +50,13 @@
     }
 
     .mention {
-        background-color: var(--clr-text-placeholder);
+        background-color: var(--clr-text);
         border-radius: .1875rem;
+        color: var(--clr-background);
         cursor: pointer;
         font-weight: 600;
         padding: 0 .125rem;
+        white-space: nowrap;
     }
 
     p,
@@ -61,22 +64,6 @@
     code {
         margin: 0;
         white-space: pre-wrap;
-    }
-
-    .profile-picture {
-        align-items: center;
-        aspect-ratio: 1/1;
-        background-color: var(--clr-element-dark);
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        height: 3.5rem;
-    }
-
-    .profile-picture>img {
-        aspect-ratio: 1/1;
-        border-radius: 50%;
-        width: 100%;
     }
 
     .reactions {

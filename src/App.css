@@ -57,7 +57,8 @@ input:focus-visible {
 }
 
 input::placeholder {
-  color: var(--clr-text-placeholder)
+  color: var(--clr-text-placeholder);
+  font-size: .875rem;
 }
 
 .renderIfVisible {
@@ -65,7 +66,7 @@ input::placeholder {
 }
 
 ::-webkit-scrollbar {
-  width: .875rem;
+  width: .5rem;
 }
 
 ::-webkit-scrollbar-track {
@@ -73,10 +74,11 @@ input::placeholder {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--clr-element);
+  background: var(--clr-element-light);
   border-radius: 1rem;
+  height: 3rem;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--clr-element-light);
+  background: var(--clr-text);
 }

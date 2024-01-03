@@ -1,9 +1,10 @@
-import './filterOverlay.css'
+import './filters.css'
 import Setting from '../setting/setting'
 
-export default function FilterOverlay() {
+export default function Filters() {
   return (
-    <div className='filterOverlay'>
+    <div className='filters'>
+      <input type='text' placeholder='username' />
       <Setting name={'Images'} />
       <Setting name={'Videos'} />
       <Setting name={'Links'} />

@@ -1,0 +1,15 @@
+.profile-picture {
+    align-items: center;
+    aspect-ratio: 1/1;
+    background-color: var(--clr-element-dark);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    height: 3.5rem;
+}
+
+.profile-picture>img {
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    width: 100%;
+}
