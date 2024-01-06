@@ -7,7 +7,7 @@ export default function Router() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Auth />}></Route>
-        <Route path='/view' element={<View passphrase='courteous-beige-parrotfish' />}></Route>
+        <Route path='/view' element={<View />}></Route>
       </Routes>
     </BrowserRouter>
   )
