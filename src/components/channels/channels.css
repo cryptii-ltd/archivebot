@@ -13,8 +13,12 @@
 }
 
 .channel {
+    align-items: center;
     border-radius: 1rem;
     cursor: pointer;
+    display: flex;
+    gap: .25rem;
+    justify-content: flex-start;
     padding: 1rem;
     transition: all 250ms ease;
     -webkit-user-select: none;

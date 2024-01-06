@@ -2,6 +2,7 @@
     align-items: flex-start;
     animation: 150ms fadeIn forwards ease;
     border-radius: 1rem;
+    container-type: inline-size;
     display: flex;
     gap: 1rem;
     justify-content: flex-start;
@@ -93,5 +94,13 @@
 
     100% {
         opacity: 1;
+    }
+}
+
+@container (max-width: 700px) {
+    .info {
+        align-items: flex-start !important;
+        flex-direction: column;
+        justify-content: flex-start !important;
     }
 }

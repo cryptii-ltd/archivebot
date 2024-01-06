@@ -1,11 +1,13 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import View from './pages/view'
+import Auth from './pages/auth/auth'
+import View from './pages/view/view'
 
 export default function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/view' element={<View />}></Route>
+        <Route path='/' element={<Auth />}></Route>
+        <Route path='/view' element={<View passphrase='courteous-beige-parrotfish' />}></Route>
       </Routes>
     </BrowserRouter>
   )

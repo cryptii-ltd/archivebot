@@ -1,0 +1,38 @@
+.auth {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0 auto;
+    height: 100%;
+    padding: 1rem;
+    text-align: center;
+    width: fit-content;
+
+    .copyright {
+        color: var(--clr-text-secondary);
+        font-size: .875rem;
+        padding: 2rem;
+    }
+}
+
+.auth>div {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    input {
+        width: 100%;
+    }
+
+    .logo {
+        display: grid;
+        place-items: center;
+        padding: 2rem .5rem;
+    }
+
+    p {
+        margin: 0;
+    }
+}

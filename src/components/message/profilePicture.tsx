@@ -1,5 +1,5 @@
 import './profilePicture.css'
-import { IconUserHexagon } from '@tabler/icons-react'
+import { IconBrandDiscordFilled } from '@tabler/icons-react'
 
 import { useEffect, useState } from 'react'
 import axios from 'axios'
@@ -24,5 +24,5 @@ export default function ProfilePicture(props: ProfilePictureProps) {
     )
   }, [props.avatarHash, props.authorID])
 
-  return <span className='profile-picture'>{avatarURL ? <img alt={`${props.author}'s profile picture`} src={avatarURL} /> : <IconUserHexagon />}</span>
+  return <span className='profile-picture'>{avatarURL ? <img alt={`${props.author}'s profile picture`} src={avatarURL} /> : <IconBrandDiscordFilled />}</span>
 }
