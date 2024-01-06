@@ -1,0 +1,7 @@
+cryptography
+Flask
+Flask_Compress
+Flask_Cors
+gunicorn
+mariadb
+pytest
