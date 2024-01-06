@@ -1,27 +1,27 @@
 interface MessageResponse {
-  archiveName: string
-  channelName: string
-  guildID: string
-  guildName: string
+  archive_name: string
+  channel_name: string
+  guild_id: string
+  guild_name: string
   messages: MessageData[]
-  userID: string
+  user_id: string
 }
 
 interface MessageData {
   author: string
-  authorID: string
+  author_id: string
   content: string
   date: number
   id: string
   mentions: string[]
-  attachments?: [
+  attachments: [
     {
       source: string
       type: string
     }
   ]
-  avatarHash?: string
-  reactions?: [string, number][]
+  avatar_hash: string
+  reactions: [string, number][]
 }
 
 export default MessageResponse

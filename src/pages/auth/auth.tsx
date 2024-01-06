@@ -2,13 +2,20 @@ import './auth.css'
 import Logo from '../../components/logo/logo'
 import MessageResponse from '../../types/messageData'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 export default function Auth() {
+  const navigate = useNavigate()
   const [passphrase, setPassphrase] = useState('')
   const [fetching, setFetching] = useState(false)
   const [archive, setArchive] = useState<MessageResponse>()
+
+  useEffect(() => {
+    if (!archive) return
+    navigate('/view', { state: archive })
+  }, [navigate, archive])
 
   const handleInputChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     setPassphrase(e.target.value.replace(/\s+/g, '-'))

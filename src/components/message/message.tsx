@@ -1,6 +1,7 @@
 import './message.css'
 import ProfilePicture from './profilePicture'
 import Reaction from './reaction'
+import Attachment from './attachment'
 
 import { useEffect, useState } from 'react'
 import Markdown from 'react-markdown'
@@ -14,14 +15,14 @@ interface MessageProps {
   date: number
   id: string
   mentions: string[]
-  attachments?: [
+  attachments: [
     {
       source: string
       type: string
     }
   ]
-  avatarHash?: string
-  reactions?: [string, number][]
+  avatarHash: string
+  reactions: [string, number][]
 }
 
 export default function Message(props: MessageProps) {
@@ -43,16 +44,20 @@ export default function Message(props: MessageProps) {
         <div className='body'>
           <Markdown children={content} rehypePlugins={[rehypeRaw]} />
         </div>
-        <div className='attachments'>
-          {props.attachments?.map((attachment, index) => (
-            <img src={attachment.source} key={index} />
-          ))}
-        </div>
-        <div className='reactions'>
-          {props.reactions?.map((emote, index) => (
-            <Reaction key={index} emote={emote[0]} count={emote[1]} />
-          ))}
-        </div>
+        {props.attachments.length > 0 && (
+          <div className='attachments'>
+            {props.attachments.map((attachment, index) => (
+              <Attachment key={index} source={attachment.source} type={attachment.type} />
+            ))}
+          </div>
+        )}
+        {props.reactions.length > 0 && (
+          <div className='reactions'>
+            {props.reactions?.map((emote, index) => (
+              <Reaction key={index} emote={emote[0]} count={emote[1]} />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   )
