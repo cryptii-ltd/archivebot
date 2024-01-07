@@ -5,6 +5,11 @@ interface ReactionProps {
   count: number
 }
 
+/**
+ * Reaction Component - Displays reaction and count.
+ * @param {ReactionProps} props - The properties for the Reaction component.
+ * @returns {JSX.Element} Reaction component.
+ */
 export default function Reaction(props: ReactionProps) {
   return (
     <div className='reaction'>

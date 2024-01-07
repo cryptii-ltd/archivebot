@@ -5,6 +5,7 @@ import { MessageResponse, MessageData } from '../../types/messageData'
 
 import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
+import JumpTo from '../../components/jumpTo/jumpTo'
 
 /**
  * View Component - Renders the Sidebar and Messages based on message data.
@@ -44,6 +45,9 @@ export default function View() {
                 <Message key={message.id} {...message} />
               ))}
           </div>
+
+          {/* Jump to bottom/top button */}
+          <JumpTo />
         </>
       )}
     </div>

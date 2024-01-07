@@ -1,0 +1,15 @@
+.jump-to {
+    background-color: var(--clr-element);
+    border-radius: 1rem;
+    cursor: pointer;
+    inset: auto 1rem 1rem auto;
+    outline: transparent;
+    padding: 1rem;
+    position: fixed;
+    transition: all 300ms ease;
+}
+
+.jump-to:hover {
+    background-color: var(--clr-accent);
+    color: var(--clr-element);
+}
