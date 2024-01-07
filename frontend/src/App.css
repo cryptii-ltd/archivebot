@@ -5,6 +5,7 @@
   --clr-element-dark: #060c16;
   --clr-element-glass: rgb(0 6 16 / 80%);
   --clr-element-light: #191e27;
+  --clr-error: #ff5252;
   --clr-text: #ffffff;
   --clr-text-placeholder: #44484f;
   --clr-text-secondary: #a9a9a9;
@@ -16,6 +17,12 @@ body {
   background-color: var(--clr-background);
   color: var(--clr-text);
   height: 100dvh;
+}
+
+a,
+a:visited {
+  color: var(--clr-accent);
+  text-decoration: none;
 }
 
 a:has(button) {
@@ -65,10 +72,6 @@ input::placeholder {
   color: var(--clr-text-placeholder);
   font-size: .875rem;
   user-select: none;
-}
-
-.renderIfVisible {
-  width: 100%;
 }
 
 ::-webkit-scrollbar {

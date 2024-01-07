@@ -5,6 +5,31 @@ video {
     max-height: 50rem;
 }
 
+.attachments .spoiler {
+    border-radius: 1rem;
+    overflow: hidden;
+    position: relative;
+
+    img {
+        filter: blur(10rem);
+    }
+
+    .reveal {
+        cursor: pointer;
+        display: grid;
+        left: 50%;
+        place-items: center;
+        position: absolute;
+        top: 50%;
+        translate: -50%;
+        transition: color 300ms ease;
+    }
+
+    .reveal:hover {
+        color: var(--clr-accent);
+    }
+}
+
 .attachment[data-unsupported] {
     align-items: center;
     aspect-ratio: 2/1;

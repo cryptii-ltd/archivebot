@@ -17,7 +17,7 @@
     border-radius: 1rem;
     cursor: pointer;
     display: flex;
-    gap: .25rem;
+    gap: .5rem;
     justify-content: flex-start;
     padding: 1rem;
     transition: all 250ms ease;

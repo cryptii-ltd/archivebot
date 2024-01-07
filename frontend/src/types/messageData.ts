@@ -1,4 +1,4 @@
-interface MessageResponse {
+export interface MessageResponse {
   archive_name: string
   channel_name: string
   guild_id: string
@@ -7,7 +7,7 @@ interface MessageResponse {
   user_id: string
 }
 
-interface MessageData {
+export interface MessageData {
   author: string
   author_id: string
   content: string
@@ -16,6 +16,7 @@ interface MessageData {
   mentions: string[]
   attachments: [
     {
+      name: string
       source: string
       type: string
     }
@@ -23,5 +24,3 @@ interface MessageData {
   avatar_hash: string
   reactions: [string, number][]
 }
-
-export default MessageResponse

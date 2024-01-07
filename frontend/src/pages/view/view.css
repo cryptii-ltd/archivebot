@@ -2,6 +2,7 @@
     align-items: flex-start;
     display: flex;
     flex-direction: column;
+    gap: .5rem;
     justify-content: flex-start;
     overflow-y: auto;
     padding: 1rem;

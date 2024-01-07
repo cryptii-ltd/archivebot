@@ -1,6 +1,10 @@
 import './filters.css'
 import Setting from '../setting/setting'
 
+/**
+ * Filters Component - Displays input field and settings for message filters.
+ * @returns {JSX.Element} Filters component.
+ */
 export default function Filters() {
   return (
     <div className='filters'>

@@ -32,7 +32,8 @@
     .info {
         align-items: center;
         display: flex;
-        justify-content: space-between;
+        gap: 1rem;
+        justify-content: flex-start;
         width: 100%;
 
         .username {
@@ -52,9 +53,9 @@
     }
 
     .mention {
-        background-color: var(--clr-text);
+        background-color: var(--clr-element-light);
         border-radius: .1875rem;
-        color: var(--clr-background);
+        color: var(--clr-text);
         cursor: pointer;
         font-weight: 600;
         padding: 0 .125rem;
@@ -81,6 +82,13 @@
 
 .message:hover {
     background-color: var(--clr-element-dark);
+}
+
+
+
+.message:has(.mention[data-global="true"]) {
+    box-shadow: 0 0 4rem -2rem var(--clr-accent) inset, 0 0 1.25rem -0.5rem var(--clr-accent);
+    outline: solid 1px var(--clr-accent);
 }
 
 @keyframes fadeIn {

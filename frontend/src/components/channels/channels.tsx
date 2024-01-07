@@ -10,10 +10,14 @@ interface ChannelProps {
   isActive?: boolean
 }
 
+/**
+ * Channels Component - Displays a list of channels for a specific guild.
+ * @param {ChannelsProps} props - The properties for the Channels component.
+ * @returns {JSX.Element} Channels component.
+ */
 export default function Channels(props: ChannelsProps) {
   return (
     <div className='channels'>
-      <h3>Channels</h3>
       {props.channels.map((channel, index) => (
         <span key={index} className='channel' data-active={channel.isActive}>
           <IconHash stroke={1.5} />
