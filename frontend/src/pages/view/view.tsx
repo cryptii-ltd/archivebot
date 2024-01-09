@@ -3,7 +3,7 @@ import Sidebar from '../../components/sidebar/sidebar'
 import Message from '../../components/message/message'
 import { MessageResponse, MessageData } from '../../types/messageData'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import JumpTo from '../../components/jumpTo/jumpTo'
 
@@ -15,10 +15,12 @@ export default function View() {
   const location = useLocation()
   const navigate = useNavigate()
   const [loaded, setLoaded] = useState(false)
-  const [scrollBuffer, setScrollBuffer] = useState([0, 250])
+  const [scrollBuffer, setScrollBuffer] = useState([0, 50])
 
   const messageData: MessageResponse = location.state
   const [searchTerm, setSearchTerm] = useState('')
+  const pageTop = useRef(null)
+  const pageBottom = useRef(null)
 
   /**
    * useEffect hook to control component behavior on location changes.
@@ -38,16 +40,20 @@ export default function View() {
         <>
           <Sidebar searchTerm={searchTerm} setSearchTerm={setSearchTerm} guildName={messageData.guild_name} channelName={messageData.channel_name} />
           <div className='messages'>
+            <span className='jump-anchor' ref={pageTop}></span>
+
             {messageData.messages
               .filter((message: MessageData) => message.content.toLowerCase().includes(searchTerm.toLowerCase()))
               .slice(scrollBuffer[0], scrollBuffer[1])
               .map((message: MessageData) => (
                 <Message key={message.id} {...message} />
               ))}
+
+            <span className='jump-anchor' ref={pageBottom}></span>
           </div>
 
           {/* Jump to bottom/top button */}
-          <JumpTo />
+          <JumpTo upRef={pageTop} downRef={pageBottom} />
         </>
       )}
     </div>

@@ -83,7 +83,9 @@ export default function Auth() {
         <div className='logo'>
           <Logo />
         </div>
+
         <p>To view and decrypt your archive, you’ll need your passphrase</p>
+
         {fetching ? (
           <span className='loader'>
             <IconLoader2 size={24} stroke={1.5} />
@@ -97,7 +99,7 @@ export default function Auth() {
         )}
       </div>
 
-      <span className='copyright'>© 2024 CRYPTII LTD | All Rights Reserved</span>
+      <span className='copyright'>© {new Date().getFullYear()} CRYPTII | All Rights Reserved</span>
     </div>
   )
 }

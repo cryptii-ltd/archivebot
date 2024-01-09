@@ -3,15 +3,22 @@ import './jumpTo.css'
 import { IconArrowDown, IconArrowUp } from '@tabler/icons-react'
 
 interface JumpToProps {
-  up?: boolean
+  upRef: React.MutableRefObject<HTMLElement | null>
+  downRef: React.MutableRefObject<HTMLElement | null>
+  goUp?: boolean
 }
 
 export default function JumpTo(props: JumpToProps) {
-  const [isUp, setIsUp] = useState(props.up ?? false)
+  const [goUp, setGoUp] = useState(props.goUp ?? false)
+
+  const scroll = () => {
+    goUp ? props.upRef.current?.scrollIntoView({ behavior: 'smooth' }) : props.downRef.current?.scrollIntoView({ behavior: 'smooth' })
+    setGoUp(!goUp)
+  }
 
   return (
-    <div className='jump-to' onClick={() => setIsUp(!isUp)}>
-      {isUp ? <IconArrowUp /> : <IconArrowDown />}
+    <div className='jump-to' onClick={() => scroll()}>
+      {goUp ? <IconArrowUp /> : <IconArrowDown />}
     </div>
   )
 }
