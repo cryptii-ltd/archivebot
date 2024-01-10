@@ -23,26 +23,6 @@ interface SidebarProps {
 export default function Sidebar(props: SidebarProps) {
   const [filterVisible, setFilterVisible] = useState(false)
   const [collapsed, setCollapsed] = useState(false)
-  const [searchTimeout, setSearchTimeout] = useState<number | null>(null)
-
-  /**
-   * Handles the input change for search with debounce.
-   * @param {React.ChangeEvent<HTMLInputElement>} e - The input change event.
-   */
-  const searchHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.currentTarget.value
-
-    // Custom debounce implementation
-    if (searchTimeout) {
-      clearTimeout(searchTimeout)
-    }
-
-    setSearchTimeout(
-      setTimeout(() => {
-        props.setSearchTerm(value)
-      }, 500)
-    )
-  }
 
   return (
     <div className='sidebar' data-collapsed={collapsed}>
@@ -50,7 +30,7 @@ export default function Sidebar(props: SidebarProps) {
         <>
           <Logo />
           <div className='search'>
-            <input type='text' placeholder='Search messages' onChange={(e) => searchHandler(e)} />
+            <input type='text' placeholder='Search messages' onChange={(e) => props.setSearchTerm(e.target.value)} value={props.searchTerm} />
             <div>
               <IconAdjustmentsAlt onClick={() => setFilterVisible(!filterVisible)} data-toggled={filterVisible} />
             </div>

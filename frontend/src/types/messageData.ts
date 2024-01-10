@@ -1,4 +1,4 @@
-export interface MessageResponse {
+export type MessageResponse = {
   archive_name: string
   channel_name: string
   guild_id: string
@@ -7,7 +7,7 @@ export interface MessageResponse {
   user_id: string
 }
 
-export interface MessageData {
+export type MessageData = {
   author: string
   author_id: string
   content: string

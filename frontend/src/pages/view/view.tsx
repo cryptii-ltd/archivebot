@@ -1,11 +1,12 @@
 import './view.css'
 import Sidebar from '../../components/sidebar/sidebar'
 import Message from '../../components/message/message'
+import JumpTo from '../../components/jumpTo/jumpTo'
+
 import { MessageResponse, MessageData } from '../../types/messageData'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import JumpTo from '../../components/jumpTo/jumpTo'
 
 /**
  * View Component - Renders the Sidebar and Messages based on message data.
@@ -15,10 +16,12 @@ export default function View() {
   const location = useLocation()
   const navigate = useNavigate()
   const [loaded, setLoaded] = useState(false)
-  const [scrollBuffer, setScrollBuffer] = useState([0, 50])
 
   const messageData: MessageResponse = location.state
+
+  // Search parameters
   const [searchTerm, setSearchTerm] = useState('')
+
   const pageTop = useRef(null)
   const pageBottom = useRef(null)
 
@@ -34,6 +37,11 @@ export default function View() {
     setLoaded(true)
   }, [location])
 
+  // Filter based on content search
+  const filteredMessages = useMemo(() => {
+    return messageData.messages.filter((message: MessageData) => message.content.toLowerCase().includes(searchTerm.toLowerCase())).slice(-100)
+  }, [messageData, searchTerm])
+
   return (
     <div className='view'>
       {loaded && (
@@ -42,12 +50,9 @@ export default function View() {
           <div className='messages'>
             <span className='jump-anchor' ref={pageTop}></span>
 
-            {messageData.messages
-              .filter((message: MessageData) => message.content.toLowerCase().includes(searchTerm.toLowerCase()))
-              .slice(scrollBuffer[0], scrollBuffer[1])
-              .map((message: MessageData) => (
-                <Message key={message.id} {...message} />
-              ))}
+            {filteredMessages.map((message: MessageData) => (
+              <Message key={message.id} {...message} />
+            ))}
 
             <span className='jump-anchor' ref={pageBottom}></span>
           </div>
