@@ -13,6 +13,8 @@ interface SidebarProps {
   channelName: string
   searchTerm: string
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>
+  searchAuthor: string
+  setSearchAuthor: React.Dispatch<React.SetStateAction<string>>
 }
 
 /**
@@ -35,7 +37,7 @@ export default function Sidebar(props: SidebarProps) {
               <IconAdjustmentsAlt onClick={() => setFilterVisible(!filterVisible)} data-toggled={filterVisible} />
             </div>
 
-            {filterVisible && <FilterOverlay />}
+            {filterVisible && <FilterOverlay searchAuthor={props.searchAuthor} setSearchAuthor={props.setSearchAuthor} />}
           </div>
 
           <div className='guild-name'>

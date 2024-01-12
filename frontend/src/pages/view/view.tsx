@@ -5,7 +5,7 @@ import JumpTo from '../../components/jumpTo/jumpTo'
 
 import { MessageResponse, MessageData } from '../../types/messageData'
 
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 /**
@@ -18,9 +18,11 @@ export default function View() {
   const [loaded, setLoaded] = useState(false)
 
   const messageData: MessageResponse = location.state
+  const renderLimit: number = 25
 
   // Search parameters
-  const [searchTerm, setSearchTerm] = useState('')
+  const [searchContent, setSearchContent] = useState('')
+  const [searchAuthor, setSearchAuthor] = useState('')
 
   const pageTop = useRef(null)
   const pageBottom = useRef(null)
@@ -35,24 +37,26 @@ export default function View() {
     if (!messageData) navigate('/')
     if (!location.state) return
     setLoaded(true)
-  }, [location])
+  }, [messageData, location, navigate])
 
   // Filter based on content search
-  const filteredMessages = useMemo(() => {
-    return messageData.messages.filter((message: MessageData) => message.content.toLowerCase().includes(searchTerm.toLowerCase())).slice(-100)
-  }, [messageData, searchTerm])
+  const filteredMessages = () => {
+    return messageData.messages
+      .filter((message: MessageData) => message.content.toLowerCase().includes(searchContent.toLowerCase()))
+      .filter((message: MessageData) => message.author.toLowerCase().includes(searchAuthor.toLowerCase()))
+      .slice(renderLimit * -1)
+      .map((message: MessageData) => <Message key={message.id} {...message} />)
+  }
 
   return (
     <div className='view'>
       {loaded && (
         <>
-          <Sidebar searchTerm={searchTerm} setSearchTerm={setSearchTerm} guildName={messageData.guild_name} channelName={messageData.channel_name} />
+          <Sidebar searchTerm={searchContent} setSearchTerm={setSearchContent} searchAuthor={searchAuthor} setSearchAuthor={setSearchAuthor} guildName={messageData.guild_name} channelName={messageData.channel_name} />
           <div className='messages'>
             <span className='jump-anchor' ref={pageTop}></span>
 
-            {filteredMessages.map((message: MessageData) => (
-              <Message key={message.id} {...message} />
-            ))}
+            {filteredMessages()}
 
             <span className='jump-anchor' ref={pageBottom}></span>
           </div>
