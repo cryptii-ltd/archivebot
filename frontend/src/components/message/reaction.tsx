@@ -10,7 +10,7 @@ interface ReactionProps {
  * @param {ReactionProps} props - The properties for the Reaction component.
  * @returns {JSX.Element} Reaction component.
  */
-export default function Reaction(props: ReactionProps) {
+export default function Reaction(props: ReactionProps): JSX.Element {
   return (
     <div className='reaction'>
       <span className='emote'>{props.emote}</span>

@@ -15,7 +15,7 @@ export interface AttachmentProps {
  * @param {AttachmentProps} props - The properties for the Attachment component.
  * @returns {JSX.Element} Attachment component.
  */
-export default function Attachment(props: AttachmentProps) {
+export default function Attachment(props: AttachmentProps): JSX.Element | undefined {
   if (props.type === 'image' || (props.source.toLowerCase().match('.gif|.ico|.heic|.jpeg|.jpg|.png|.svg|.webp') && props.type === 'attachment')) return Image(props)
   if (props.type === 'tenor') return Tenor(props)
   if (props.type === 'video' || (props.source.toLowerCase().match('.mov|.mp4|.mkv') && props.type === 'attachment')) return Vid(props)
@@ -67,15 +67,15 @@ function Vid(props: AttachmentProps) {
   const videoRegex: RegExp = /https?:\/\/.*\.(mp4|mov|wmv|flv|avi|mkv|webm|vp9)(\?.*)?/gm
   const videoLinks: string[][] = [...props.source.matchAll(videoRegex)]
 
-  if (videoLinks.length > 0) {
-    return (
-      <div className='attachment'>
-        {videoLinks.map((link, index) => (
-          <video key={index} controls>
-            <source src={link[0]} />
-          </video>
-        ))}
-      </div>
-    )
-  }
+  if (videoLinks.length === 0) return
+
+  return (
+    <div className='attachment'>
+      {videoLinks.map((link, index) => (
+        <video key={index} controls>
+          <source src={link[0]} />
+        </video>
+      ))}
+    </div>
+  )
 }

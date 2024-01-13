@@ -21,7 +21,7 @@ interface SidebarProps {
  * @param {SidebarProps} props - The properties for the Sidebar component.
  * @returns {JSX.Element} Sidebar component.
  */
-export default function Sidebar(props: SidebarProps) {
+export default function Sidebar(props: SidebarProps): JSX.Element {
   const [filterVisible, setFilterVisible] = useState(false)
   const [collapsed, setCollapsed] = useState(false)
 

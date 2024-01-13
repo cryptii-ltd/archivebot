@@ -8,8 +8,15 @@ interface JumpToProps {
   goUp?: boolean
 }
 
-export default function JumpTo(props: JumpToProps) {
+/**
+ * JumpTo Component - Allows for jumping between the start/end of page.
+ * @param {JumpToProps} props
+ * @returns {JSX.Element} JumpTo Component
+ */
+export default function JumpTo(props: JumpToProps): JSX.Element {
   const [goUp, setGoUp] = useState(props.goUp ?? false)
+
+  // TODO: Viewport scroll boundary detection to flip the arrow/scroll direction.
 
   const scroll = () => {
     goUp ? props.upRef.current?.scrollIntoView({ behavior: 'smooth' }) : props.downRef.current?.scrollIntoView({ behavior: 'smooth' })

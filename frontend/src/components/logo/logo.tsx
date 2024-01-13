@@ -11,6 +11,6 @@ interface LogoProps {
  * @param {LogoProps} props - The properties for the Logo component.
  * @returns {JSX.Element} Logo component.
  */
-export default function Logo(props: LogoProps) {
+export default function Logo(props: LogoProps): JSX.Element {
   return <img className='brand' alt='CRYPTII Archive Bot Logo' src={!props.isCollapsed ? Brand : BrandCollapsed} />
 }

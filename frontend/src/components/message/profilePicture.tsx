@@ -15,7 +15,7 @@ interface ProfilePictureProps {
  * @param {ProfilePictureProps} props - The properties for the ProfilePicture component.
  * @returns {JSX.Element} ProfilePicture component.
  */
-export default function ProfilePicture(props: ProfilePictureProps) {
+export default function ProfilePicture(props: ProfilePictureProps): JSX.Element {
   const [avatarURL, setAvatarURL] = useState<string | null>(null)
 
   useEffect(() => {

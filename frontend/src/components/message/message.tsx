@@ -15,7 +15,7 @@ import { MessageData } from '../../types/messageData'
  * @param {MessageData} props - The properties for the Message component.
  * @returns {JSX.Element} Message component.
  */
-export default function Message(props: MessageData) {
+export default function Message(props: MessageData): JSX.Element {
   const [content, setContent] = useState(props.content)
 
   /**

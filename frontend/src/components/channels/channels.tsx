@@ -2,10 +2,10 @@ import './channels.css'
 import { IconHash } from '@tabler/icons-react'
 
 interface ChannelsProps {
-  channels: ChannelProps[]
+  channels: Channel[]
 }
 
-interface ChannelProps {
+interface Channel {
   name: string
   isActive?: boolean
 }
@@ -15,7 +15,7 @@ interface ChannelProps {
  * @param {ChannelsProps} props - The properties for the Channels component.
  * @returns {JSX.Element} Channels component.
  */
-export default function Channels(props: ChannelsProps) {
+export default function Channels(props: ChannelsProps): JSX.Element {
   return (
     <div className='channels'>
       {props.channels.map((channel, index) => (

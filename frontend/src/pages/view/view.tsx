@@ -13,7 +13,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
  * View Component - Renders the Sidebar and Messages based on message data.
  * @returns {JSX.Element} View component.
  */
-export default function View() {
+export default function View(): JSX.Element {
   const location = useLocation()
   const navigate = useNavigate()
   const [loaded, setLoaded] = useState(false)
@@ -40,12 +40,12 @@ export default function View() {
     setLoaded(true)
   }, [messageData, location, navigate])
 
-  // Filter based on content search
+  // Filter based on content and author search
   const filteredMessages = () => {
     return messageData.messages
       .filter((message: MessageData) => message.content.toLowerCase().includes(contentQuery.toLowerCase()))
       .filter((message: MessageData) => message.author.toLowerCase().includes(authorQuery.toLowerCase()))
-      .slice(renderLimit * -1)
+      .slice(renderLimit * -1) // Temporary - render the last n amount of messages
       .map((message: MessageData) => <Message key={message.id} {...message} />)
   }
 

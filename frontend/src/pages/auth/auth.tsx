@@ -11,7 +11,7 @@ import axios from 'axios'
  * Auth Component - Handles user authentication and passphrase input.
  * @returns {JSX.Element} Auth component.
  */
-export default function Auth() {
+export default function Auth(): JSX.Element {
   const navigate = useNavigate()
   const [params] = useSearchParams()
   const [passphrase, setPassphrase] = useState(params.get('passphrase') ?? '')
@@ -36,7 +36,7 @@ export default function Auth() {
    * Handles input change for passphrase.
    * @param {React.ChangeEvent<HTMLInputElement>} e - The input change event.
    */
-  const handleInputChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+  const handleInputChange: React.ChangeEventHandler<HTMLInputElement> = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassphrase(e.target.value.replace(/\s+/g, '-'))
   }
 
@@ -45,7 +45,7 @@ export default function Auth() {
    * Initiates authentication when the 'Enter' key is pressed.
    * @param {React.KeyboardEvent<HTMLInputElement>} e - The keyboard event.
    */
-  const handleEnterPress: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
+  const handleEnterPress: React.KeyboardEventHandler<HTMLInputElement> = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key !== 'Enter') return
     authenticate()
   }
