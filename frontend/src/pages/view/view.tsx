@@ -4,6 +4,7 @@ import Message from '../../components/message/message'
 import JumpTo from '../../components/jumpTo/jumpTo'
 
 import { MessageResponse, MessageData } from '../../types/messageData'
+import { SearchFilters } from '../../types/searchFilters'
 
 import { useEffect, useRef, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
@@ -21,8 +22,8 @@ export default function View() {
   const renderLimit: number = 25
 
   // Search parameters
-  const [searchContent, setSearchContent] = useState('')
-  const [searchAuthor, setSearchAuthor] = useState('')
+  const [contentQuery, setContentQuery] = useState('')
+  const [authorQuery, setAuthorQuery] = useState('')
 
   const pageTop = useRef(null)
   const pageBottom = useRef(null)
@@ -42,17 +43,24 @@ export default function View() {
   // Filter based on content search
   const filteredMessages = () => {
     return messageData.messages
-      .filter((message: MessageData) => message.content.toLowerCase().includes(searchContent.toLowerCase()))
-      .filter((message: MessageData) => message.author.toLowerCase().includes(searchAuthor.toLowerCase()))
+      .filter((message: MessageData) => message.content.toLowerCase().includes(contentQuery.toLowerCase()))
+      .filter((message: MessageData) => message.author.toLowerCase().includes(authorQuery.toLowerCase()))
       .slice(renderLimit * -1)
       .map((message: MessageData) => <Message key={message.id} {...message} />)
+  }
+
+  const filters: SearchFilters = {
+    contentQuery: contentQuery,
+    setContentQUery: setContentQuery,
+    authorQuery: authorQuery,
+    setAuthorQuery: setAuthorQuery,
   }
 
   return (
     <div className='view'>
       {loaded && (
         <>
-          <Sidebar searchTerm={searchContent} setSearchTerm={setSearchContent} searchAuthor={searchAuthor} setSearchAuthor={setSearchAuthor} guildName={messageData.guild_name} channelName={messageData.channel_name} />
+          <Sidebar searchFilter={filters} guildName={messageData.guild_name} channelName={messageData.channel_name} />
           <div className='messages'>
             <span className='jump-anchor' ref={pageTop}></span>
 

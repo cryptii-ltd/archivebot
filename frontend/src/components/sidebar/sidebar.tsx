@@ -5,16 +5,15 @@ import Logo from '../logo/logo'
 import Channels from '../channels/channels'
 import FilterOverlay from '../filters/filters'
 
+import { SearchFilters } from '../../types/searchFilters'
+
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 interface SidebarProps {
   guildName: string
   channelName: string
-  searchTerm: string
-  setSearchTerm: React.Dispatch<React.SetStateAction<string>>
-  searchAuthor: string
-  setSearchAuthor: React.Dispatch<React.SetStateAction<string>>
+  searchFilter: SearchFilters
 }
 
 /**
@@ -32,12 +31,12 @@ export default function Sidebar(props: SidebarProps) {
         <>
           <Logo />
           <div className='search'>
-            <input type='text' placeholder='Search messages' onChange={(e) => props.setSearchTerm(e.target.value)} value={props.searchTerm} />
+            <input type='text' placeholder='Search messages' onChange={(e) => props.searchFilter.setContentQUery(e.target.value)} value={props.searchFilter.contentQuery} />
             <div>
               <IconAdjustmentsAlt onClick={() => setFilterVisible(!filterVisible)} data-toggled={filterVisible} />
             </div>
 
-            {filterVisible && <FilterOverlay searchAuthor={props.searchAuthor} setSearchAuthor={props.setSearchAuthor} />}
+            {filterVisible && <FilterOverlay searchAuthor={props.searchFilter.authorQuery} setSearchAuthor={props.searchFilter.setAuthorQuery} />}
           </div>
 
           <div className='guild-name'>
