@@ -1,8 +1,9 @@
-import { useState } from 'react'
-import './toggle.css'
+import { useState } from "react";
+import "./toggle.css";
 
 interface ToggleProps {
-  isToggled: boolean
+  isToggled: boolean;
+  onToggle?: () => void;
 }
 
 /**
@@ -11,7 +12,16 @@ interface ToggleProps {
  * @returns {JSX.Element} - Toggle Component
  */
 export default function Toggle(props: ToggleProps): JSX.Element {
-  const [toggled, setToggled] = useState(props.isToggled)
+  const [toggled, setToggled] = useState(props.isToggled);
 
-  return <div className='toggle' data-toggled={toggled} onClick={() => setToggled(!toggled)}></div>
+  return (
+    <div
+      className="toggle"
+      data-toggled={toggled}
+      onClick={() => {
+        setToggled(!toggled);
+        if (props.onToggle) props.onToggle();
+      }}
+    ></div>
+  );
 }

@@ -1,9 +1,10 @@
-import './setting.css'
-import Toggle from '../toggle/toggle'
+import "./setting.css";
+import Toggle from "../toggle/toggle";
 
 interface SettingProps {
-  name: string
-  isToggled?: boolean
+  name: string;
+  isToggled: boolean;
+  onToggle: () => void;
 }
 
 /**
@@ -13,9 +14,9 @@ interface SettingProps {
  */
 export default function Setting(props: SettingProps): JSX.Element {
   return (
-    <span className='setting'>
+    <span className="setting">
       <label>{props.name}</label>
-      <Toggle isToggled={props.isToggled ?? false} />
+      <Toggle isToggled={props.isToggled} onToggle={props.onToggle} />
     </span>
-  )
+  );
 }
