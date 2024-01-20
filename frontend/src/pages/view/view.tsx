@@ -3,7 +3,7 @@ import Sidebar from "../../components/sidebar/sidebar";
 import Message from "../../components/message/message";
 import JumpTo from "../../components/jumpTo/jumpTo";
 
-import { MessageResponse, MessageData } from "../../types/messageData";
+import { MessageResponse, MessageData, Attachment } from "../../types/messageData";
 import { SearchFilters } from "../../types/searchFilters";
 
 import { useEffect, useRef, useState } from "react";
@@ -57,12 +57,12 @@ export default function View(): JSX.Element {
         const imageAttachments = ["image", "tenor"];
         const videoAttachments = ["video", "youtube"];
         const urlExpression =
-          /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi;
+          /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/gi;
         const urlMatcher = new RegExp(urlExpression);
         if (toggleImages) {
           if (message.attachments.length > 0) {
             if (
-              message.attachments.some((attachment: any) =>
+              message.attachments.some((attachment: Attachment) =>
                 imageAttachments.includes(attachment.type)
               )
             ) {
@@ -71,7 +71,7 @@ export default function View(): JSX.Element {
           }
         } else if (toggleVideos) {
           if (message.attachments.length > 0) {
-            message.attachments.forEach((attachment: any) => {
+            message.attachments.forEach((attachment: Attachment) => {
               if (videoAttachments.includes(attachment.type))
                 return <Message key={message.id} {...message} />;
             });
@@ -81,7 +81,6 @@ export default function View(): JSX.Element {
             message.content.match(urlMatcher) &&
             !(message.attachments.length > 0)
           ) {
-            console.log(message.content);
             return <Message key={message.id} {...message} />;
           }
         } else {

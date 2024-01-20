@@ -7,6 +7,12 @@ export type MessageResponse = {
   user_id: string
 }
 
+export type Attachment = {
+  name: string
+  source: string
+  type: string
+}
+
 export type MessageData = {
   author: string
   author_id: string
@@ -14,13 +20,7 @@ export type MessageData = {
   date: number
   id: string
   mentions: string[]
-  attachments: [
-    {
-      name: string
-      source: string
-      type: string
-    }
-  ]
+  attachments: Array<Attachment>
   avatar_hash: string
   reactions: [string, number][]
 }
