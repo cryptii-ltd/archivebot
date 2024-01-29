@@ -1,4 +1,4 @@
-import './attachment.css'
+import style from './Attachment.module.css'
 import { IconEye } from '@tabler/icons-react'
 
 import { useState } from 'react'
@@ -16,13 +16,25 @@ export interface AttachmentProps {
  * @returns {JSX.Element} Attachment component.
  */
 export default function Attachment(props: AttachmentProps): JSX.Element | undefined {
-  if (props.type === 'image' || (props.source.toLowerCase().match('.gif|.ico|.heic|.jpeg|.jpg|.png|.svg|.webp') && props.type === 'attachment')) return Image(props)
+  if (
+    props.type === 'image' ||
+    (props.source.toLowerCase().match('.gif|.ico|.heic|.jpeg|.jpg|.png|.svg|.webp') && props.type === 'attachment')
+  )
+    return Image(props)
   if (props.type === 'tenor') return Tenor(props)
-  if (props.type === 'video' || (props.source.toLowerCase().match('.mov|.mp4|.mkv') && props.type === 'attachment')) return Vid(props)
+  if (props.type === 'video' || (props.source.toLowerCase().match('.mov|.mp4|.mkv') && props.type === 'attachment'))
+    return Vid(props)
 
   return (
-    <div className='attachment' data-type={props.type}>
-      <a href={props.source} target='_blank'>
+    <div
+      className={style.attachment}
+      data-type={props.type}
+    >
+      <a
+        href={props.source}
+        target='_blank'
+        rel='noreferrer'
+      >
         {props.source}
       </a>
     </div>
@@ -35,19 +47,35 @@ function Image(props: AttachmentProps) {
   return (
     <>
       {spoiler ? (
-        <div className='spoiler'>
-          <div className='attachment' data-type={props.type}>
-            <img src={props.source} alt={props.name} />
+        <div className={style.spoiler}>
+          <div
+            className={style.attachment}
+            data-type={props.type}
+          >
+            <img
+              src={props.source}
+              alt={props.name}
+            />
           </div>
 
-          <div className='reveal'>
-            <IconEye size={52} stroke={1.5} onClick={() => setSpoiler(false)} />
+          <div className={style.reveal}>
+            <IconEye
+              size={52}
+              stroke={1.5}
+              onClick={() => setSpoiler(false)}
+            />
             <span>Show spoiler</span>
           </div>
         </div>
       ) : (
-        <div className='attachment' data-type={props.type}>
-          <img src={props.source} alt={props.name} />
+        <div
+          className={style.attachment}
+          data-type={props.type}
+        >
+          <img
+            src={props.source}
+            alt={props.name}
+          />
         </div>
       )}
     </>
@@ -57,8 +85,11 @@ function Image(props: AttachmentProps) {
 function Tenor(props: AttachmentProps) {
   const tenorLink = `${props.source}.gif`
   return (
-    <div className='attachment'>
-      <img src={tenorLink} alt='A tenor gif' />
+    <div className={style.attachment}>
+      <img
+        src={tenorLink}
+        alt='A tenor gif'
+      />
     </div>
   )
 }
@@ -72,7 +103,10 @@ function Vid(props: AttachmentProps) {
   return (
     <div className='attachment'>
       {videoLinks.map((link, index) => (
-        <video key={index} controls>
+        <video
+          key={index}
+          controls
+        >
           <source src={link[0]} />
         </video>
       ))}

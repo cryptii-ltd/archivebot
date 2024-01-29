@@ -1,14 +1,15 @@
-import './message.css'
-import ProfilePicture from './profilePicture'
-import Reaction from './reaction'
-import Attachment from './attachment'
-import { AttachmentProps } from './attachment'
+import style from './Message.module.css'
+import ProfilePicture from './ProfilePicture'
+import Reaction from './Reaction'
+import Attachment from './Attachment'
+import { AttachmentProps } from './Attachment'
+
+import { MessageData } from '../../types/messageData'
 
 import { useEffect, useState } from 'react'
 import Markdown from 'react-markdown'
 import rehypeRaw from 'rehype-raw'
 import escapeStringRegexp from 'escape-string-regexp'
-import { MessageData } from '../../types/messageData'
 
 /**
  * Message Component - Displays a user message including profile picture, content, attachments, and reactions.
@@ -38,29 +39,46 @@ export default function Message(props: MessageData): JSX.Element {
   }, [])
 
   return (
-    <div className='message'>
-      <ProfilePicture author={props.author} authorID={props.author_id} avatarHash={props.avatar_hash} />
-      <div className='content'>
-        <div className='info'>
-          <span className='username'>{props.author}</span>
-          <span className='time'>{ISOToContextualDate(props.date)}</span>
+    <div className={style.message}>
+      <ProfilePicture
+        author={props.author}
+        authorID={props.author_id}
+        avatarHash={props.avatar_hash}
+      />
+      <div className={style.content}>
+        <div className={style.info}>
+          <span className={style.username}>{props.author}</span>
+          <span className={style.time}>{ISOToContextualDate(props.date)}</span>
         </div>
         {content.length > 0 && (
-          <div className='body'>
-            <Markdown children={content} rehypePlugins={[rehypeRaw]} />
+          <div className={style.body}>
+            <Markdown
+              // eslint-disable-next-line react/no-children-prop
+              children={content}
+              rehypePlugins={[rehypeRaw]}
+            />
           </div>
         )}
         {props.attachments.length > 0 && (
-          <div className='attachments'>
+          <div className={style.attachments}>
             {props.attachments.map((attachment, index) => (
-              <Attachment key={index} source={attachment.source} type={attachment.type} spoiler={attachment.source.includes('SPOILER')} />
+              <Attachment
+                key={index}
+                source={attachment.source}
+                type={attachment.type}
+                spoiler={attachment.source.includes('SPOILER')}
+              />
             ))}
           </div>
         )}
         {props.reactions.length > 0 && (
-          <div className='reactions'>
+          <div className={style.reactions}>
             {props.reactions?.map((emote, index) => (
-              <Reaction key={index} emote={emote[0]} count={emote[1]} />
+              <Reaction
+                key={index}
+                emote={emote[0]}
+                count={emote[1]}
+              />
             ))}
           </div>
         )}
@@ -78,7 +96,9 @@ export default function Message(props: MessageData): JSX.Element {
 function getMentions(mentions: string[], content: string, global: boolean = false) {
   mentions.map((mention) => {
     const regex = new RegExp(`@${escapeStringRegexp(mention)}`, 'gm')
-    content = content.toString().replace(regex, `<span class="mention" data-global="${global}" username="${mention}">@${mention}</span>`)
+    content = content
+      .toString()
+      .replace(regex, `<span class="mention" data-global="${global}" username="${mention}">@${mention}</span>`)
   })
 
   return content

@@ -1,24 +1,19 @@
-import "./sidebar.css";
-import {
-  IconAdjustmentsAlt,
-  IconChevronRight,
-  IconChevronLeft,
-  IconLogout,
-} from "@tabler/icons-react";
+import style from './index.module.css'
+import { IconAdjustmentsAlt, IconChevronRight, IconChevronLeft, IconLogout } from '@tabler/icons-react'
 
-import Logo from "../logo/logo";
-import Channels from "../channels/channels";
-import FilterOverlay from "../filters/filters";
+import Logo from '../Logo'
+import Channels from '../Channels'
+import FilterOverlay from '../Filters'
 
-import { SearchFilters } from "../../types/searchFilters";
+import { SearchFilters } from '../../types/searchFilters'
 
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 interface SidebarProps {
-  guildName: string;
-  channelName: string;
-  searchFilter: SearchFilters;
+  guildName: string
+  channelName: string
+  searchFilter: SearchFilters
 }
 
 /**
@@ -27,21 +22,22 @@ interface SidebarProps {
  * @returns {JSX.Element} Sidebar component.
  */
 export default function Sidebar(props: SidebarProps): JSX.Element {
-  const [filterVisible, setFilterVisible] = useState(false);
-  const [collapsed, setCollapsed] = useState(false);
+  const [filterVisible, setFilterVisible] = useState(false)
+  const [collapsed, setCollapsed] = useState(false)
 
   return (
-    <div className="sidebar" data-collapsed={collapsed}>
+    <div
+      className={style.sidebar}
+      data-collapsed={collapsed}
+    >
       {!collapsed ? (
         <>
           <Logo />
-          <div className="search">
+          <div className={style.search}>
             <input
-              type="text"
-              placeholder="Search messages"
-              onChange={(e) =>
-                props.searchFilter.setContentQuery(e.target.value)
-              }
+              type='text'
+              placeholder='Search messages'
+              onChange={(e) => props.searchFilter.setContentQuery(e.target.value)}
               value={props.searchFilter.contentQuery}
             />
             <div>
@@ -65,28 +61,32 @@ export default function Sidebar(props: SidebarProps): JSX.Element {
             )}
           </div>
 
-          <div className="guild-name">
+          <div className={style.guildName}>
             <h3>{props.guildName}</h3>
           </div>
+
           <Channels channels={[{ name: props.channelName, isActive: true }]} />
 
-          <Link to="/">
-            <button type="button">Leave</button>
+          <Link to='/'>
+            <button type='button'>Leave</button>
           </Link>
         </>
       ) : (
         <>
           <Logo isCollapsed={true} />
 
-          <Link to="/">
+          <Link to='/'>
             <IconLogout />
           </Link>
         </>
       )}
 
-      <div className="collapse" onClick={() => setCollapsed(!collapsed)}>
+      <div
+        className={style.collapse}
+        onClick={() => setCollapsed(!collapsed)}
+      >
         {collapsed ? <IconChevronRight /> : <IconChevronLeft />}
       </div>
     </div>
-  );
+  )
 }

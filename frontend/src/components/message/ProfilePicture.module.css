@@ -1,4 +1,4 @@
-.profile-picture {
+.profilePicture {
     align-items: center;
     aspect-ratio: 1/1;
     background-color: var(--clr-element);
@@ -9,7 +9,7 @@
     user-select: none;
 }
 
-.profile-picture>img {
+.profilePicture>img {
     aspect-ratio: 1/1;
     border-radius: 50%;
     width: 100%;

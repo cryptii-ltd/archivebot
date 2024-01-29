@@ -15,7 +15,7 @@
         padding: 2rem;
     }
 
-    .error-text {
+    .errorText {
         color: var(--clr-error);
         white-space: pre-wrap;
     }
