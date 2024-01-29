@@ -1,4 +1,4 @@
-import './profilePicture.css'
+import style from './ProfilePicture.module.css'
 import { IconBrandDiscordFilled } from '@tabler/icons-react'
 
 import { useEffect, useState } from 'react'
@@ -32,9 +32,16 @@ export default function ProfilePicture(props: ProfilePictureProps): JSX.Element 
   }, [props.avatarHash, props.authorID])
 
   return (
-    <span className='profile-picture'>
+    <span className={style.profilePicture}>
       {/* Conditional render based on avatarURL availability */}
-      {avatarURL ? <img alt={`${props.author}'s profile picture`} src={avatarURL} /> : <IconBrandDiscordFilled />}
+      {avatarURL ? (
+        <img
+          alt={`${props.author}'s profile picture`}
+          src={avatarURL}
+        />
+      ) : (
+        <IconBrandDiscordFilled />
+      )}
     </span>
   )
 }

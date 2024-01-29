@@ -1,5 +1,6 @@
-import './auth.css'
-import Logo from '../../components/logo/logo'
+/* eslint-disable indent */ // <-- Workaround just for this file, since eslint seems to shit itself in the axios catch block.
+import style from './index.module.css'
+import Logo from '../../components/Logo'
 import { MessageResponse } from '../../types/messageData'
 import { IconLoader2 } from '@tabler/icons-react'
 
@@ -78,23 +79,33 @@ export default function Auth(): JSX.Element {
   }
 
   return (
-    <div className='auth'>
+    <div className={style.auth}>
       <div>
-        <div className='logo'>
+        <div className={style.logo}>
           <Logo />
         </div>
 
-        <p>To view and decrypt your archive, you’ll need your passphrase</p>
+        <p>To view and decrypt your archive, you&apos;ll need your passphrase</p>
 
         {fetching ? (
-          <span className='loader'>
-            <IconLoader2 size={24} stroke={1.5} />
-            <span>We're fetching your archive now...</span>
+          <span className={style.loader}>
+            <IconLoader2
+              size={24}
+              stroke={1.5}
+            />
+            <span>We&apos;re fetching your archive now...</span>
           </span>
         ) : (
           <>
-            <input type='text' placeholder='Passphrase' value={passphrase} onChange={handleInputChange} onKeyUp={handleEnterPress} disabled={fetching} />
-            {fetchFailed && <span className='error-text'>{failReason}</span>}
+            <input
+              type='text'
+              placeholder='Passphrase'
+              value={passphrase}
+              onChange={handleInputChange}
+              onKeyUp={handleEnterPress}
+              disabled={fetching}
+            />
+            {fetchFailed && <span className={style.errorText}>{failReason}</span>}
           </>
         )}
       </div>

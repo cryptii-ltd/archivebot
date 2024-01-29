@@ -1,4 +1,4 @@
-import './channels.css'
+import style from './index.module.css'
 import { IconHash } from '@tabler/icons-react'
 
 interface ChannelsProps {
@@ -17,9 +17,13 @@ interface Channel {
  */
 export default function Channels(props: ChannelsProps): JSX.Element {
   return (
-    <div className='channels'>
+    <div className={style.channels}>
       {props.channels.map((channel, index) => (
-        <span key={index} className='channel' data-active={channel.isActive}>
+        <span
+          key={index}
+          className={style.channel}
+          data-active={channel.isActive}
+        >
           <IconHash stroke={1.5} />
           <span>{channel.name}</span>
         </span>

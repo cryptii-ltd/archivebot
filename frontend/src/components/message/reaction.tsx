@@ -1,4 +1,4 @@
-import './reaction.css'
+import style from './Reaction.module.css'
 
 interface ReactionProps {
   emote: string
@@ -12,9 +12,9 @@ interface ReactionProps {
  */
 export default function Reaction(props: ReactionProps): JSX.Element {
   return (
-    <div className='reaction'>
-      <span className='emote'>{props.emote}</span>
-      <span className='count'>{props.count}</span>
+    <div className={style.reaction}>
+      <span className={style.emote}>{props.emote}</span>
+      <span className={style.count}>{props.count}</span>
     </div>
   )
 }
