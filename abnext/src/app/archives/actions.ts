@@ -4,10 +4,23 @@ export async function getArchives(userID: string) {
     const archives = await prisma.archives.findMany({
         where: {
             user_id: userID
+        },
+        orderBy: {
+            created_at: 'desc'
         }
     })
 
     return archives
+}
+
+export async function getMessageCount(archiveID: number) {
+    const messageCount = await prisma.messages.count({
+        where: {
+            archive_id: archiveID
+        }
+    })
+
+    return messageCount
 }
 
 export async function getAccessToken(authCode: string) {

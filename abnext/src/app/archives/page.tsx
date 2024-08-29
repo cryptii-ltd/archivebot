@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation'
-import { getAccessToken, getArchives, getUserDetails } from './actions'
+import { getAccessToken, getArchives, getMessageCount, getUserDetails } from './actions'
 
 export default async function Archives({
   searchParams,
@@ -19,8 +19,10 @@ export default async function Archives({
     <>
       {archives.length > 0 ? (
         <ul>
-          {archives.map((archive) => (
-            <li key={archive.id}>{archive.name}</li>
+          {archives.map(archive => (
+            <li key={archive.id}>
+              {new Date(archive.created_at).toLocaleString()} - {archive.name} - {getMessageCount(archive.id)} messages
+            </li>
           ))}
         </ul>
       ) : (
@@ -29,4 +31,3 @@ export default async function Archives({
     </>
   )
 }
-
