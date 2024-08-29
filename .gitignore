@@ -145,3 +145,5 @@ dist
 *.vsix
 
 .vscode/settings.json
+
+.DS_Store
