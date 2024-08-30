@@ -1,15 +1,7 @@
-import { redirect } from 'next/navigation'
-import { getAccessToken, getArchives, getMessageCount, getUserDetails } from './actions'
+import { getArchives, getMessageCount, getUserDetails } from './actions'
 
-export default async function Archives({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | string[] | undefined }
-}) {
-  const code = searchParams.code as string
-  const accessToken = await getAccessToken(code)
-
-  if (!accessToken) redirect('/')
+export default async function Archives() {
+  const accessToken = undefined
 
   const userData = await getUserDetails(accessToken)
   const archives = await getArchives(userData.id)
@@ -31,3 +23,4 @@ export default async function Archives({
     </>
   )
 }
+
