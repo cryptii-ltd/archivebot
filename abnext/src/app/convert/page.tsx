@@ -1,4 +1,4 @@
-import { createArchive } from '@/lib/archive'
+import { createArchive } from '@/_lib/archive'
 import data from './archive.json'
 import { Archive } from '../types/archive'
 

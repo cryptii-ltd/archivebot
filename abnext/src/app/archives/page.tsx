@@ -1,9 +1,15 @@
-import { getArchives, getMessageCount, getUserDetails } from './actions'
+import getUserDetails from '@/_lib/user'
+import { getArchives, getMessageCount } from '@/_lib/archive'
+import { cookies } from 'next/headers'
+import { redirect } from 'next/navigation'
+import LogOut from './LogOut'
 
 export default async function Archives() {
-  const accessToken = undefined
+  const accessToken = cookies().get('session')?.value
 
-  const userData = await getUserDetails(accessToken)
+  if (!accessToken) redirect('/')
+
+  const userData = await getUserDetails(accessToken as string)
   const archives = await getArchives(userData.id)
   console.log(userData.id)
 
@@ -20,7 +26,8 @@ export default async function Archives() {
       ) : (
         <span>No archives found...</span>
       )}
+
+      <LogOut />
     </>
   )
 }
-

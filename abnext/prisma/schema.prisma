@@ -9,18 +9,19 @@ datasource db {
 
 model archives {
   id         Int        @id @default(autoincrement())
-  server_id  String     @db.Text
-  user_id    String     @db.Text
+  server_id  String     @db.VarChar(18)
+  user_id    String     @db.VarChar(18)
   name       String     @db.VarChar(255)
   created_at DateTime   @default(now()) @db.Timestamp(0)
+  deleted    Boolean?   @default(false)
   messages   messages[]
 }
 
 model messages {
   id         Int      @id @default(autoincrement())
   archive_id Int
-  user_id    String   @db.Text
-  server_id  String   @db.Text
+  user_id    String   @db.VarChar(18)
+  server_id  String   @db.VarChar(18)
   content    String   @db.Text
   iv         Bytes    @db.VarBinary(16)
   tag        Bytes    @db.VarBinary(16)
