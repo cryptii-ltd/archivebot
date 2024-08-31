@@ -1,3 +1,9 @@
+/**
+ * Fetches the details of the authenticated user from Discord using the provided access token.
+ *
+ * @param {string} accessToken - The OAuth2 access token used for authenticating the request.
+ * @returns {Promise<Object|boolean>} - Returns a Promise that resolves to the user data object if successful, or `false` if the request fails.
+ */
 export default async function getUserDetails(accessToken: string) {
     const headers = {
         Authorization: `Bearer ${accessToken}`,

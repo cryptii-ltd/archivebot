@@ -2,6 +2,12 @@ import { cookies } from 'next/headers'
 import { NextRequest, NextResponse } from 'next/server'
 import { newSession, revokeSession, verifySession } from './_lib/session'
 
+/**
+ * Middleware function to handle authentication and session management based on the request path.
+ *
+ * @param {NextRequest} request - The incoming request object.
+ * @returns {Promise<NextResponse>} - Returns a Promise that resolves to a NextResponse object, handling redirections and session validation.
+ */
 export default async function middleware(request: NextRequest) {
     const path = request.nextUrl.pathname
     const searchParams = request.nextUrl.searchParams

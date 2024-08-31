@@ -3,7 +3,13 @@
 import getUserDetails from './user'
 import { NextResponse } from 'next/server'
 
-export async function newSession(authCode: string) {
+/**
+ * Creates a new session by exchanging the provided authorization code for an access token.
+ *
+ * @param {string} authCode - The authorization code received from the OAuth2 provider.
+ * @returns {Promise<string | false>} - The access token if successful, otherwise `false`.
+ */
+export async function newSession(authCode: string): Promise<string | false> {
     if (!authCode) return false
 
     const payload = new URLSearchParams({
@@ -30,12 +36,24 @@ export async function newSession(authCode: string) {
     return oAuthData.access_token
 }
 
-export async function revokeSession(response: NextResponse) {
+/**
+ * Revokes an existing session by deleting the session cookie.
+ *
+ * @param {NextResponse} response - The Next.js server response object.
+ * @returns {Promise<NextResponse>} - The updated response object with the session cookie removed.
+ */
+export async function revokeSession(response: NextResponse): Promise<NextResponse> {
     response.cookies.delete('session')
     return response
 }
 
-export async function verifySession(accessToken: string) {
+/**
+ * Verifies if the provided access token is valid by checking user details.
+ *
+ * @param {string} accessToken - The access token to verify.
+ * @returns {Promise<boolean>} - `true` if the session is valid, otherwise `false`.
+ */
+export async function verifySession(accessToken: string): Promise<boolean> {
     if (!accessToken) return false
     if (await getUserDetails(accessToken)) return true
     return false
