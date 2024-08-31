@@ -1,7 +1,7 @@
-import getUserDetails from '@/_lib/user'
-import { getArchives, getMessageCount } from '@/_lib/archive'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
+import getUserDetails from '@/_lib/user'
+import { getArchives, getMessageCount } from '@/_lib/archive'
 import LogOut from './LogOut'
 
 export default async function Archives() {

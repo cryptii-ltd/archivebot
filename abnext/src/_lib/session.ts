@@ -1,10 +1,10 @@
 'use server'
 
-import { redirect } from 'next/navigation'
-import { cookies } from 'next/headers'
+import getUserDetails from './user'
+import { NextResponse } from 'next/server'
 
 export async function newSession(authCode: string) {
-    if (!authCode) redirect(process.env.oAuth_url as string)
+    if (!authCode) return false
 
     const payload = new URLSearchParams({
         grant_type: 'authorization_code',
@@ -24,15 +24,19 @@ export async function newSession(authCode: string) {
         headers: headers,
     })
 
-    if (response.status != 200) redirect('/')
+    if (response.status != 200) return false
 
     const oAuthData = await response.json()
-    cookies().set('session', oAuthData.access_token)
-
-    redirect('/archives')
+    return oAuthData.access_token
 }
 
-export async function revokeSession() {
-    cookies().delete('session')
-    redirect('/')
+export async function revokeSession(response: NextResponse) {
+    response.cookies.delete('session')
+    return response
+}
+
+export async function verifySession(accessToken: string) {
+    if (!accessToken) return false
+    if (await getUserDetails(accessToken)) return true
+    return false
 }
