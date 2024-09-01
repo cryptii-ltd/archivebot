@@ -33,6 +33,10 @@ export default async function middleware(request: NextRequest) {
             }
             break
 
+        case '/logout':
+            const response = NextResponse.redirect(new URL('/', request.url))
+            return await revokeSession(response)
+
         default:
             break
     }
