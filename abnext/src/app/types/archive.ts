@@ -3,22 +3,18 @@ export type Archive = {
     channel_name: string,
     guild_id: string,
     guild_name: string,
+    user_id: string,
     messages: Message[]
 }
 
 export type Message = {
-    attachments: Attachment[],
+    attachments: any[],
+    mentions: any[],
+    reactions: any[],
     author: string,
     author_id: string,
     avatar_hash: string,
-    content: string,
+    content?: string,
     date: number,
-    id: string,
-    mentions: string[] | null,
-    reactions: string[] | null
-}
-
-export type Attachment = {
-    source: string,
-    type: string
+    id: string
 }

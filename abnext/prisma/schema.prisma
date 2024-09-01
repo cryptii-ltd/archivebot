@@ -8,25 +8,27 @@ datasource db {
 }
 
 model archives {
-  id         Int        @id @default(autoincrement())
-  server_id  String     @db.VarChar(18)
-  user_id    String     @db.VarChar(18)
-  name       String     @db.VarChar(255)
-  created_at DateTime   @default(now()) @db.Timestamp(0)
-  deleted    Boolean?   @default(false)
-  messages   messages[]
+  id           Int        @id @default(autoincrement())
+  server_id    String     @db.Text
+  server_name  String     @db.Text
+  channel_name String     @db.Text
+  user_id      String     @db.Text
+  name         String     @db.Text
+  created_at   DateTime   @default(now()) @db.Timestamp(0)
+  deleted      Boolean?   @default(false)
+  messages     messages[]
 }
 
 model messages {
-  id         Int      @id @default(autoincrement())
-  archive_id Int
-  user_id    String   @db.VarChar(18)
-  server_id  String   @db.VarChar(18)
-  content    String   @db.Text
-  iv         Bytes    @db.VarBinary(16)
-  tag        Bytes    @db.VarBinary(16)
-  created_at DateTime @default(now()) @db.Timestamp(0)
-  archives   archives @relation(fields: [archive_id], references: [id], onUpdate: Restrict, map: "messages_ibfk_1")
+  id          Int      @id @default(autoincrement())
+  archive_id  Int
+  message_id  String   @db.Text
+  author      String   @db.Text
+  author_id   String   @db.Text
+  avatar_hash String?  @db.Text
+  content     String?  @db.Text
+  created_at  DateTime @default(now()) @db.Timestamp(0)
+  archives    archives @relation(fields: [archive_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "messages_ibfk_1")
 
   @@index([archive_id], map: "archive_id")
 }
