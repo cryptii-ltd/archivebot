@@ -3,7 +3,8 @@ import prisma from "./prisma"
 export async function getArchives(userId: string) {
     const archives = await prisma.archives.findMany({
         where: {
-            user_id: userId
+            user_id: userId,
+            deleted: false
         },
         orderBy: {
             created_at: 'desc'
