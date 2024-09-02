@@ -25,6 +25,8 @@ def main() -> None:
     """
     archives: dict = {}
 
+    print('Grabbing metadata...')
+
     # Get archive metadata
     with connect('plsr.uk', 'archivebot') as conn:
         cur = conn.cursor()
@@ -38,6 +40,7 @@ def main() -> None:
                 'key': encryption_key
             }
 
+    print('Getting archives...')
     # Get archives
     with connect('194.164.20.136', 'archiveslux') as conn:
         cur = conn.cursor()
@@ -52,11 +55,12 @@ def main() -> None:
             archive['decrypted_data'] = decrypt(archive.get('encrypted_data').decode(), archive.get('key'))
 
     archives_to_migrate = [archive for archive in archives.values() if 'decrypted_data' in archive.keys()] # These are archives made post the fran-fuck-aggedon
+    print(f'Found {len(archives_to_migrate)} archives to migrate...')
+
+    migrated_archives = 0
 
     # Finally, migrate the archive over
     for archive in archives_to_migrate:
-        print(f'Migrating {archive.get("name")}...')
-
         with connect('194.164.20.136', 'abnext') as conn:
             cur = conn.cursor()
             # Verify the archive doesn't already exist
@@ -72,8 +76,10 @@ def main() -> None:
             exists: int = cur.fetchone()[0]
 
             if (exists > 0):
-                print('Already exists. Skipping...')
                 continue
+
+            migrated_archives += 1
+            print(f'Migrating {archive.get("name")}...')
 
             cur.execute(
                 'INSERT IGNORE INTO archives(server_id, uuid, server_name, channel_name, user_id, name, created_at) VALUES (%s, %s, %s, %s, %s, %s, %s)',
@@ -89,9 +95,10 @@ def main() -> None:
             )
             conn.commit()
 
-            print('Processing messages...')
             archive_id: int = cur.lastrowid
             messages: dict = ast.literal_eval(archive.get('decrypted_data'))
+
+            print(f'  - Processing {len(messages.get("messages"))} messages...')
 
             message_data = [
                 (
@@ -110,11 +117,18 @@ def main() -> None:
                 )
                 for message in messages.get('messages')
             ]
+
+            print('  - Committing messages to database...')
+
             cur.executemany(
                 'INSERT INTO messages(archive_id, message_id, author, author_id, avatar_hash, content, created_at) VALUES (%s, %s, %s, %s, %s, %s, %s)',
                 message_data
             )
             conn.commit()
+
+            print('  - Done.')
+
+    print(f'\nMigrated {migrated_archives} archives!' if migrated_archives > 0 else '\nNo new archives to migrate!')
 
 
 def connect(host: str, database: str):
