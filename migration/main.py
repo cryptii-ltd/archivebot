@@ -1,6 +1,8 @@
 import sys
 import ast
 import os
+import uuid
+import json
 from datetime import datetime
 from dotenv import load_dotenv
 from cryptography.fernet import Fernet
@@ -30,8 +32,8 @@ def main():
         cur.execute('SELECT hashed_passphrase, json FROM messages')
         result: list = cur.fetchall()
 
-        for [passphrase, json] in result:
-            archives[passphrase]['encrypted_data'] = json
+        for [passphrase, json_data] in result:
+            archives[passphrase]['encrypted_data'] = json_data
 
     for archive in archives.values():
         if 'encrypted_data' in archive.keys():
@@ -62,9 +64,10 @@ def main():
                 continue
 
             cur.execute(
-                'INSERT IGNORE INTO archives(server_id, server_name, channel_name, user_id, name, created_at) VALUES (%s, %s, %s, %s, %s, %s)',
+                'INSERT IGNORE INTO archives(server_id, uuid, server_name, channel_name, user_id, name, created_at) VALUES (%s, %s, %s, %s, %s, %s, %s)',
                 (
                     ast.literal_eval(archive.get('decrypted_data')).get('guild_id'),
+                    str(uuid.uuid4()),
                     ast.literal_eval(archive.get('decrypted_data')).get('guild_name'),
                     ast.literal_eval(archive.get('decrypted_data')).get('channel_name'),
                     archive.get('user'),
@@ -85,7 +88,12 @@ def main():
                     message.get('author'),
                     message.get('author_id'),
                     message.get('avatar_hash'),
-                    message.get('content'),
+                    json.dumps({
+                        'attachments': message.get('attachments'),
+                        'content': message.get('content'),
+                        'mentions': message.get('mentions'),
+                        'reactions': message.get('reactions')
+                    }),
                     datetime.fromtimestamp(message.get('date') / 1000).isoformat()
                 )
                 for message in messages.get('messages')

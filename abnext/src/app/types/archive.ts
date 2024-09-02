@@ -8,13 +8,16 @@ export type Archive = {
 }
 
 export type Message = {
-    attachments: any[],
-    mentions: any[],
-    reactions: any[],
+    archive_id: number,
+    message_id: string,
     author: string,
     author_id: string,
     avatar_hash: string,
-    content?: string,
-    date: number,
-    id: string
+    content: {
+        attachments: string[],
+        content: string,
+        mentions: string[],
+        reactions: [string, number][]
+    },
+    created_at: number,
 }

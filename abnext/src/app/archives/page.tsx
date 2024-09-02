@@ -2,8 +2,16 @@ import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import getUserDetails from '@/_lib/user'
-import { getArchives, getMessageCount } from '@/_lib/archive'
+import { getArchives } from '@/_lib/archive'
+import DeleteButton from './deleteButton'
 
+/**
+ * Page to list archives associated with the currently authenticated user.
+ *
+ * If the user is not authenticated, redirects to the root path.
+ *
+ * @returns The page component.
+ */
 export default async function Archives() {
   const accessToken = cookies().get('session')?.value
 
@@ -18,7 +26,11 @@ export default async function Archives() {
         <ul>
           {archives.map(archive => (
             <li key={archive.id}>
-              {new Date(archive.created_at).toLocaleString()} - {archive.name} - {getMessageCount(archive.id)} messages
+              {archive.name}{' '}
+              <Link href={`/archives/${userData.id}/${archive.uuid}`}>
+                <button>View</button>
+              </Link>
+              <DeleteButton archiveId={archive.id} />
             </li>
           ))}
         </ul>

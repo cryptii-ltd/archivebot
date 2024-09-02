@@ -28,7 +28,7 @@ export default async function middleware(request: NextRequest) {
         case '/archives':
             const validSession = await verifySession(session?.value as string)
             if (!validSession) {
-                const response = NextResponse.redirect(new URL('/', request.url))
+                const response = NextResponse.redirect(new URL(process.env.oAuth_url as string))
                 return await revokeSession(response)
             }
             break
