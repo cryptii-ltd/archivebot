@@ -24,9 +24,12 @@ export default async function Archive({
   const archive = await getArchive(params.userId, params.uuid)
   const user = await getUserDetails(cookies().get('session')?.value as string)
 
-  // If the archive does not exist, or the user does not have permission to view it, return a error message
-  if (archive === null || archive.user_id != user.id) {
-    return <span>This archive either does not exist, or you do not have permission to view it.</span>
+  if (archive === null) {
+    return <span>This archive does not exist</span>
+  }
+
+  if (archive.user_id != user.id) {
+    return <span>You do not have permission to view this archive.</span>
   }
 
   // Get the messages in the archive
