@@ -13,32 +13,28 @@ export default async function middleware(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams
     const session = cookies().get('session')
 
-    switch (path) {
-        case '/':
-            if (searchParams.get('code')) {
-                const accessToken = await newSession(searchParams.get('code') as string)
-                if (!accessToken) return NextResponse.redirect(new URL(process.env.oAuth_url as string))
+    if (path === '/') {
+        if (searchParams.get('code')) {
+            const accessToken = await newSession(searchParams.get('code') as string)
+            if (!accessToken) return NextResponse.redirect(new URL(process.env.oAuth_url as string))
 
-                const response = NextResponse.redirect(new URL('/archives', request.url))
-                response.cookies.set('session', accessToken)
-                return response
-            }
-            break
+            const response = NextResponse.redirect(new URL('/archives', request.url))
+            response.cookies.set('session', accessToken)
+            return response
+        }
+    }
 
-        case '/archives':
-            const validSession = await verifySession(session?.value as string)
-            if (!validSession) {
-                const response = NextResponse.redirect(new URL(process.env.oAuth_url as string))
-                return await revokeSession(response)
-            }
-            break
-
-        case '/logout':
-            const response = NextResponse.redirect(new URL('/', request.url))
+    if (path.includes('/archive')) {
+        const validSession = await verifySession(session?.value as string)
+        if (!validSession) {
+            const response = NextResponse.redirect(new URL(process.env.oAuth_url as string))
             return await revokeSession(response)
+        }
+    }
 
-        default:
-            break
+    if (path === '/logout') {
+        const response = NextResponse.redirect(new URL('/', request.url))
+        return await revokeSession(response)
     }
 
     return NextResponse.next()

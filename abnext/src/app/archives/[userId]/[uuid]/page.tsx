@@ -1,4 +1,6 @@
+import { cookies } from 'next/headers'
 import getMessages, { getArchive } from '@/_lib/archive'
+import getUserDetails from '@/_lib/user'
 
 /**
  * Archive Page
@@ -20,9 +22,10 @@ export default async function Archive({
 }) {
   // Get the archive
   const archive = await getArchive(params.userId, params.uuid)
+  const user = await getUserDetails(cookies().get('session')?.value as string)
 
   // If the archive does not exist, or the user does not have permission to view it, return a error message
-  if (archive === null) {
+  if (archive === null || archive.user_id != user.id) {
     return <span>This archive either does not exist, or you do not have permission to view it.</span>
   }
 
@@ -38,4 +41,3 @@ export default async function Archive({
     </>
   )
 }
-
