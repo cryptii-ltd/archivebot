@@ -131,7 +131,21 @@ def main() -> None:
     print(f'\nMigrated {migrated_archives} archives!' if migrated_archives > 0 else '\nNo new archives to migrate!')
 
 
-def connect(host: str, database: str):
+def connect(host: str, database: str) -> mariadb.Connection:
+    '''
+    Connect to MariaDB database
+
+    Args:
+        host (str): IP address of MariaDB server
+        database (str): Name of database to connect to
+
+    Returns:
+        mariadb.Connection: Connection object
+
+    Raises:
+        SystemExit: If unable to connect to the database
+    '''
+
     try:
         conn = mariadb.connect(
             host=host,
@@ -142,8 +156,9 @@ def connect(host: str, database: str):
         )
 
         return conn
-    except:
+    except mariadb.Error as error:
         print(f'Failed to connect to {database} database on {host}.')
+        print(f'Error: {error}')
         sys.exit()
 
 
