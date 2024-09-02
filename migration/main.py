@@ -8,9 +8,21 @@ from dotenv import load_dotenv
 from cryptography.fernet import Fernet
 import mariadb
 
+def main() -> None:
+    """Migrated existing archives to new DB schema
 
-def main():
-    """ Migrated existing archives to new DB schema """
+    Migrates existing archives from the old `archivebot` database to the new
+    `abnext` database.
+
+    The function takes no arguments and returns `None`.
+
+    The function does the following:
+
+    1. Connects to the `archivebot` database and gets the archive metadata
+    2. Connects to the `archiveslux` database and gets the archives
+    3. Decrypts the archives using the encryption key
+    4. Migrates the archive over to the `abnext` database
+    """
     archives: dict = {}
 
     # Get archive metadata
