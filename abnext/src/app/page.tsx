@@ -2,6 +2,10 @@ import Link from 'next/link'
 
 /**
  * Home page of the app.
+ *
+ * This is the main entry point for users to explore the app.
+ *
+ * @returns The page component.
  */
 export default async function Home() {
   return (
@@ -38,7 +42,7 @@ export default async function Home() {
       </section>
 
       <section>
-        <h3>Start Archiving Now—Keep Your Discord Memories Safe and Easy to Share!</h3>
+        <h3>Start Archiving Now! Keep Your Discord Memories Safe and Easy to Share!</h3>
 
         <Link href={'/archives'}>
           <button>View Archives</button>
