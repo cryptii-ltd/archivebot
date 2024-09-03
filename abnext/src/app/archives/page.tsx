@@ -35,7 +35,10 @@ export default async function Archives() {
           ))}
         </ul>
       ) : (
-        <span>No archives found...</span>
+        <span>
+          You don&apos;t currently have any archives. <Link href={'/invite'}>Invite the bot</Link> to your discord
+          server and start archiving!
+        </span>
       )}
 
       <Link href={'/logout'}>
