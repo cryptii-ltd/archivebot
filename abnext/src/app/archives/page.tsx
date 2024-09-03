@@ -13,11 +13,7 @@ import DeleteButton from './deleteButton'
  * @returns The page component.
  */
 export default async function Archives() {
-  const accessToken = cookies().get('session')?.value
-
-  if (!accessToken) redirect('/')
-
-  const userData = await getUserDetails(accessToken as string)
+  const userData = await getUserDetails(cookies().get('session')!.value as string)
   const archives = await getArchives(userData.id)
 
   return (
@@ -41,9 +37,13 @@ export default async function Archives() {
         </span>
       )}
 
-      <Link href={'/logout'}>
+      <Link
+        href={'/logout'}
+        prefetch={false}
+      >
         <button>Log Out</button>
       </Link>
     </>
   )
 }
+

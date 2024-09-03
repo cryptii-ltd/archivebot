@@ -11,7 +11,6 @@ import { newSession, revokeSession, verifySession } from './_lib/session'
 export default async function middleware(request: NextRequest) {
     const path = request.nextUrl.pathname
     const searchParams = request.nextUrl.searchParams
-    const session = cookies().get('session')
 
     if (path === '/') {
         if (searchParams.get('code')) {
@@ -19,12 +18,16 @@ export default async function middleware(request: NextRequest) {
             if (!accessToken) return NextResponse.redirect(new URL(process.env.oAuth_url as string))
 
             const response = NextResponse.redirect(new URL('/archives', request.url))
-            response.cookies.set('session', accessToken)
+            response.cookies.set('session', accessToken, {
+                expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+            })
+
             return response
         }
     }
 
     if (path.includes('/archive')) {
+        const session = cookies().get('session')
         const validSession = await verifySession(session?.value as string)
         if (!validSession) {
             const response = NextResponse.redirect(new URL(process.env.oAuth_url as string))

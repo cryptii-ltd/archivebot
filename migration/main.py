@@ -58,6 +58,7 @@ def main() -> None:
     print(f'Found {len(archives_to_migrate)} archives to migrate...')
 
     migrated_archives = 0
+    total_message_count = 0
 
     # Finally, migrate the archive over
     for archive in archives_to_migrate:
@@ -97,6 +98,7 @@ def main() -> None:
 
             archive_id: int = cur.lastrowid
             messages: dict = ast.literal_eval(archive.get('decrypted_data'))
+            total_message_count += len(messages.get('messages'))
 
             print(f'  - Processing {len(messages.get("messages"))} messages...')
 
@@ -128,7 +130,7 @@ def main() -> None:
 
             print('  - Done.')
 
-    print(f'\nMigrated {migrated_archives} archives!' if migrated_archives > 0 else '\nNo new archives to migrate!')
+    print(f'\nMigrated {migrated_archives} archives, and {total_message_count} messages!' if migrated_archives > 0 else '\nNo new archives to migrate!')
 
 
 def connect(host: str, database: str) -> mariadb.Connection:
