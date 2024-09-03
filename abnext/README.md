@@ -1,36 +1,116 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Discord Archive Bot Frontend
+
+This is the frontend for the **Discord Archive Bot**, a platform that allows users to seamlessly archive, manage, and share their Discord conversations. This project is built with [Next.js](https://nextjs.org/) and offers a clean and user-friendly interface for viewing and organizing archived messages.
 
 ## Getting Started
 
-First, run the development server:
+To get started with development, follow these steps:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1.  **Clone the Repository:**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+    ```
+    git clone TODO
+    cd abnext
+    ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+2.  **Install Dependencies:**
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+    Install the necessary packages:
+
+    ```
+    npm install
+    # or
+    yarn install
+    # or
+    pnpm install
+    ```
+
+3.  **Setup the Database:**
+
+    Before running the development server, you need to pull the existing database schema and generate the necessary Prisma client:
+
+    ```
+    npx prisma db pull
+    npx prisma generate
+    ```
+
+4.  **Run the Development Server:**
+
+    Start the development server:
+
+    ```
+    npm run dev
+    # or
+    yarn dev
+    # or
+    pnpm dev
+    # or
+    bun dev
+    ```
+
+    Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+5.  **Migrate Existing Archives:**
+
+    If you need to migrate current archives to the new relational database schema, use the provided migration script:
+
+    ```
+    cd migration
+    python -m venv env
+    source venv/bin/activate  # On Windows use `env\Scripts\activate`
+    pip install -r requirements.txt
+    python main.py
+    ```
+
+    You'll need to configure the .env.local and .env files in the /abnext directory. Examples are provided. You will have to do the same for the .env file required in the migration directory. Again, an example is available there for you 😊
+
+6.  **Build the Project:**
+
+    Once everything is set up, you can build the project for production:
+
+    ```
+    npm run build
+    # or
+    yarn build
+    # or
+    pnpm build
+    ```
+
+
+## Features
+
+*   **Simple Archiving:** Use a slash command to quickly save your Discord chats.
+*   **Access Anytime:** Sign in with Discord to view and manage your archives.
+*   **Sleek Interface:** Browse your conversations in a clean and intuitive interface.
+*   **Organize with Ease:** Rename, delete, and manage your archives efficiently.
+*   **Share Securely:** Share your archives with optional password protection.
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+To learn more about Next.js, check out the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+*   [Next.js Documentation](https://nextjs.org/docs) - Learn about Next.js features and API.
+*   [Learn Next.js](https://nextjs.org/learn) - An interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+You can also check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) for feedback and contributions.
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/). Check out the [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- - -
+
+### Join Our Community
+
+Need help or have feedback? Join our [Discord Server](https://discord.gg/tPszrpjA) to connect with the developers and other users.
+
+- - -
+
+**The Ultimate Discord Message Archiving Solution**
+
+*Quickly archive, organize, and securely share your favorite conversations.*
+
+
+- - -
+
+© 2024 Discord Archive Bot. All rights reserved.
