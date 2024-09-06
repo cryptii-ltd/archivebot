@@ -1,5 +1,3 @@
-import Link from 'next/link'
-
 /**
  * Home page of the app.
  *
@@ -57,3 +55,4 @@ export default async function Home() {
     </main>
   )
 }
+

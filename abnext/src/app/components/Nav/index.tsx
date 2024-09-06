@@ -14,12 +14,9 @@ export default function Nav() {
         <Link href=''>Pricing</Link>
       </div>
 
-      <Link
-        href='/archives'
-        prefetch={false}
-      >
+      <a href='/archives'>
         <button>Get Started</button>
-      </Link>
+      </a>
     </nav>
   )
 }
