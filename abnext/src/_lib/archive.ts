@@ -32,6 +32,12 @@ export async function getArchives(userId: string) {
  */
 export async function getArchive(userId: string, uuid: string) {
     const archive = await prisma.archives.findFirst({
+        select: {
+            id: true,
+            user_id: true,
+            name: true,
+            uuid: true
+        },
         where: {
             user_id: userId,
             uuid: uuid,
@@ -68,12 +74,18 @@ export async function deleteArchive(archiveId: number) {
  */
 export default async function getMessages(archiveId: number, order: string = 'desc', offset: number = 0) {
     const messages = await prisma.messages.findMany({
+        select: {
+            author_id: true,
+            message_id: true,
+            content: true
+        },
         where: {
             archive_id: archiveId
         },
         orderBy: {
             created_at: order === 'desc' ? 'desc' : 'asc'
-        }
+        },
+        take: 100,
     })
 
     return messages
