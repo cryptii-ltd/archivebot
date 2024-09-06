@@ -1,4 +1,4 @@
-DROP DATABASE abnext;
+DROP DATABASE IF EXISTS abnext;
 CREATE DATABASE abnext;
 
 USE abnext;

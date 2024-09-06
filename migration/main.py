@@ -80,7 +80,7 @@ def main() -> None:
                 continue
 
             migrated_archives += 1
-            print(f'Migrating {archive.get("name")}...')
+            print(f'Migrating: {ast.literal_eval(archive.get("decrypted_data")).get("guild_name")}/{archive.get("name")}...')
 
             cur.execute(
                 'INSERT IGNORE INTO archives(server_id, uuid, server_name, channel_name, user_id, name, created_at) VALUES (%s, %s, %s, %s, %s, %s, %s)',
