@@ -9,7 +9,7 @@ To get started with development, follow these steps:
 1.  **Clone the Repository:**
 
     ```
-    git clone TODO
+    git clone git@github.com:cryptii-ltd/archivebot.git
     cd abnext
     ```
 
