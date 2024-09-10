@@ -1,0 +1,22 @@
+.outer {
+    background: var(--glassSurface);
+    box-shadow: hsl(245, 63%, 60%, 35%) 0 0 15.625rem;
+    border-radius: 2rem 2rem 0 0;
+
+    margin-bottom: -12rem;
+    width: 100%;
+    height: 100%;
+    max-width: 100rem;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
+.inner {
+    border-radius: 1.5rem 1.5rem 0 0;
+
+    text-align: center;
+    place-content: center;
+    inset: 1.25rem 1.25rem 0 1.25rem;
+    position: absolute;
+}

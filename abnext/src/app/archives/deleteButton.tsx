@@ -1,6 +1,7 @@
 'use client'
 
 import { deleteArchive } from '@/_lib/archive'
+import Button from '@/app/components/Button'
 
 interface DeleteButtonProps {
   archiveId: number
@@ -19,6 +20,12 @@ export default function DeleteButton({ archiveId }: DeleteButtonProps) {
     await deleteArchive(archiveId)
   }
 
-  return <button onClick={handleClick}>Delete Archive</button>
+  return (
+    <Button
+      type='secondary'
+      onClick={handleClick}
+    >
+      Delete Archive
+    </Button>
+  )
 }
-

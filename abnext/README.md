@@ -102,7 +102,7 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 ### Join Our Community
 
-Need help or have feedback? Join our [Discord Server](https://discord.gg/tPszrpjA) to connect with the developers and other users.
+Need help or have feedback? Join our [Discord Server](https://discord.gg/FJ93j2f) to connect with the developers and other users.
 
 - - -
 

@@ -1,31 +1,50 @@
-import Link from 'next/link'
+import '@/app/satoshi.css'
+import Brand from '@/app/components/Brand'
+import NavLink from '@/app/components/Nav/NavLink'
 
 export default function Footer() {
   return (
-    <footer>
-      <div>
-        <span>
-          Join Our <Link href='https://discord.gg/tPszrpjA'>Discord Server</Link>
-        </span>
+    <footer className='bg-sectionDark text-sectionDarkTextSecondary border-t border-glassSurfaceHighlightBorder flex flex-col items-start justify-start px-6 py-20 gap-20'>
+      <div className='flex flex-col items-start justify-start gap-20'>
+        <Brand />
+
+        <div
+          className='flex flex-wrap items-start justify-start gap-20'
+          style={{ gridTemplateColumns: 'repeat(auto-fill,minmax(140px,1fr))' }}
+        >
+          <div className='grid items-start justify-start gap-4'>
+            <h4 className='text-sectionDarkText'>Resources</h4>
+            <div className='grid items-start justify-start gap-2'>
+              <NavLink
+                href={process.env.server_invite_link as string}
+                target='_blank'
+              >
+                Join our Discord server
+              </NavLink>
+              <NavLink href='/faq'>FAQs</NavLink>
+            </div>
+          </div>
+
+          <div className='grid items-start justify-start gap-4'>
+            <h4 className='text-sectionDarkText'>Legal</h4>
+            <div className='grid items-start justify-start gap-2'>
+              <NavLink href='/privacy-policy'>Privacy Policy</NavLink>
+              <NavLink href='/terms-of-use'>Terms of Use</NavLink>
+            </div>
+          </div>
+
+          <div className='grid items-start justify-start gap-4'>
+            <h4 className='text-sectionDarkText'>Contact</h4>
+            <div className='grid items-start justify-start gap-2'>
+              <NavLink href='mailto:hi@cryptii.co.uk'>Hire Us</NavLink>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div>
-        <span>
-          <Link href='/'>Home</Link>
-          <Link href='/archives'>Archives</Link>
-          <Link href='/privacy-policy'>Privacy Policy</Link>
-        </span>
-      </div>
-
-      <div>
-        <span>Privacy Policy applies as per Discord&apos;s rules.</span>
-      </div>
-
-      <div>
-        <span>Logo</span>
-        <span>Your Discord history, always within reach</span>
-        <span>Copyright © {new Date().getFullYear()} Archive Bot. All rights reserved.</span>
-      </div>
+      <span className='text-xs'>
+        © 2024 <span style={{ fontFamily: 'Satoshi' }}>CRYPTII</span> LTD
+      </span>
     </footer>
   )
 }

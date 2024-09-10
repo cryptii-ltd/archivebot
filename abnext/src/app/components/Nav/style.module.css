@@ -1,0 +1,80 @@
+.nav {
+    container-type: inline-size;
+}
+
+.mobileNav {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+
+    width: 24px;
+    height: 24px;
+
+    cursor: pointer;
+}
+
+.mobileNav[data-nav-open="true"] {
+    gap: 0;
+    position: relative;
+    /* outline: solid 1px yellow; */
+}
+
+.mobileNav[data-nav-open="true"]::before {
+    transform: rotate(45deg);
+    /* background-color: red; */
+    position: absolute;
+}
+
+.mobileNav[data-nav-open="true"]::after {
+    transform: rotate(-45deg);
+    /* background-color: blue; */
+    position: absolute;
+}
+
+.mobileNav::before,
+.mobileNav::after {
+    content: '';
+    display: block;
+    background-color: white;
+
+    border-radius: 2px;
+    width: 1.5rem;
+    height: 2px;
+    transform-origin: center;
+    transition: all 150ms ease;
+}
+
+.mobileNavLinks {
+    height: calc(100dvh - 74px);
+
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-items: end;
+    gap: .5rem;
+
+    position: absolute;
+    inset: 74px 0 auto 0;
+    padding: 1rem;
+}
+
+@container (width < 650px) {
+
+    .links,
+    .buttons {
+        display: none;
+    }
+
+    .mobileNav {
+        display: flex;
+    }
+}
+
+@container (width > 650px) {
+
+    .mobileNav,
+    .MobileNavLinks {
+        display: none;
+    }
+}
