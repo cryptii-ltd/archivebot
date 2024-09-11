@@ -10,6 +10,21 @@ interface MobileNavProps {
   children?: React.ReactNode
 }
 
+/**
+ * A mobile navigation component that displays a hamburger menu
+ * icon which toggles the display of a vertical list of links.
+ *
+ * @param {{ links: { name: string; link: string }[], children?: React.ReactNode }} props
+ * The props for the component.
+ * @returns {JSX.Element} The mobile navigation component.
+ * @example
+ * <MobileNav
+ *   links={[
+ *     { name: 'Home', link: '/' },
+ *     { name: 'About', link: '/about' },
+ *   ]}
+ * />
+ */
 export default function MobileNav({ links, children }: MobileNavProps) {
   const [open, setOpen] = useState(false)
 

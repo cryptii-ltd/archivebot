@@ -4,6 +4,13 @@ import Showcase from '@/app/components/Showcase'
 
 import { FaDiscord } from 'react-icons/fa6'
 
+/**
+ * @function Hero
+ * @description The main hero section of the site.
+ * @returns {JSX.Element} The JSX element representing the hero section.
+ * @example
+ * <Hero />
+ */
 export default async function Hero() {
   return (
     <section

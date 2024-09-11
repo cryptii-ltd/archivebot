@@ -1,6 +1,13 @@
 import Link from 'next/link'
 import Section from '@/app/components/Section'
 
+/**
+ * Page for displaying the Terms of Use of ArchiveBot.
+ *
+ * Contains the complete text of the Terms of Use, including sections on acceptance of terms, compliance with Discord's
+ * policies, archiving and data retention, service limitations, paid plans and payment handling, user conduct, data
+ * responsibility, service termination, modifications to terms, and contact information.
+ */
 export default async function TermsOfUse() {
   return (
     <main className='mt-[96px]'>

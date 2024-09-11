@@ -1,3 +1,15 @@
+/**
+ * A section component that renders a styled HTML section element.
+ *
+ * @param {{ children: React.ReactNode, id?: string, titleBadge?: React.ReactNode, subtitle?: string, className?: string, extra?: React.ReactNode, style?: string }} props
+ * The props for the component.
+ * @returns {JSX.Element} The section element.
+ * @example
+ * <Section>
+ *   <div>Content</div>
+ * </Section>
+ */
+
 export default async function Section({
   id,
   titleBadge,

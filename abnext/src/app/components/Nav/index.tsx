@@ -24,6 +24,11 @@ const navLinks = [
   },
 ]
 
+/**
+ * The navigation bar component.
+ *
+ * @returns A JSX element representing the navigation bar.
+ */
 export async function Nav() {
   return (
     <nav

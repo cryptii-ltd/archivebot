@@ -10,6 +10,7 @@ import { TbClick } from 'react-icons/tb'
 import { HiMiniSparkles } from 'react-icons/hi2'
 import { LuTextCursorInput } from 'react-icons/lu'
 import { PiPasswordDuotone } from 'react-icons/pi'
+
 /**
  * Home page of the app.
  *
@@ -37,6 +38,7 @@ export default async function Home() {
           className='grid items-center justify-start gap-20'
           style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))' }}
         >
+          {/* Simple Archiving */}
           <div>
             <div className='flex items-center justify-start gap-2'>
               <RiSlashCommands2 size={24} />
@@ -45,6 +47,7 @@ export default async function Home() {
             <p>Archive your discord chats with just a slash.</p>
           </div>
 
+          {/* Instant Access */}
           <div>
             <div className='flex items-center justify-start gap-2'>
               <TbClick size={24} />
@@ -58,6 +61,7 @@ export default async function Home() {
           className='grid items-center justify-between gap-20'
           style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))' }}
         >
+          {/* Sleek Interface */}
           <div>
             <div className='flex items-center justify-start gap-2'>
               <HiMiniSparkles size={24} />
@@ -66,6 +70,7 @@ export default async function Home() {
             <p>Browse your saved conversations in a clean and easy-to-use interface.</p>
           </div>
 
+          {/* Organise with ease */}
           <div>
             <div className='flex items-center justify-start gap-2'>
               <LuTextCursorInput size={24} />
@@ -120,7 +125,7 @@ export default async function Home() {
               type='pro'
               price={2}
               description='Extensive archiving with priority support'
-              limits={['5 Archives per server', '40,000 Message limit']}
+              limits={['10 Archives per server', '80,000 Message limit']}
               features={['Private support channel', 'Custom server emojis', 'Password protected sharing']}
               inheritsFeaturesFrom='plus'
               bestValue

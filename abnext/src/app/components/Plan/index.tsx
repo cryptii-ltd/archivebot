@@ -14,6 +14,13 @@ interface PlanProps {
   buttonText?: string
 }
 
+/**
+ * Renders a plan component, which displays a plan's details in a card-like
+ * fashion. This component is typically used in the Plans section of a page.
+ *
+ * @param {PlanProps} props The properties for the plan component.
+ * @returns {JSX.Element} The rendered plan component.
+ */
 export default async function Plan({
   type,
   price,

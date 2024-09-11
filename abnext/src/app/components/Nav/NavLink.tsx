@@ -2,6 +2,15 @@
 
 import Link from 'next/link'
 
+/**
+ * A link component that renders a styled anchor tag with a link to the specified href.
+ *
+ * @param {{ href: string, children: React.ReactNode, className?: string, target?: string, onClick?: () => void }} props
+ * The props for the component.
+ * @returns {JSX.Element} The link element.
+ * @example
+ * <NavLink href="/about">About</NavLink>
+ */
 export default function NavLink({
   href,
   children,

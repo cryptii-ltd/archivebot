@@ -9,6 +9,15 @@ export const metadata: Metadata = {
   description: 'The Ultimate Discord Message Archiving Solution',
 }
 
+/**
+ * The root layout of the application.
+ *
+ * This component renders the HTML tags for the application, and
+ * includes the navigation bar and footer.
+ *
+ * @param {{ children: React.ReactNode }} props The props for the component.
+ * @returns {JSX.Element} The root layout of the application.
+ */
 export default function RootLayout({
   children,
 }: Readonly<{

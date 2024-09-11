@@ -1,6 +1,13 @@
 import Link from 'next/link'
 import Section from '@/app/components/Section'
 
+/**
+ * @function TermsOfUse
+ * @description The privacy policy page for ArchiveBot.
+ * @returns {JSX.Element} The privacy policy page.
+ * @example
+ * <TermsOfUse />
+ */
 export default async function TermsOfUse() {
   return (
     <main className='mt-[96px]'>

@@ -2,6 +2,15 @@ import '@/app/satoshi.css'
 import Brand from '@/app/components/Brand'
 import NavLink from '@/app/components/Nav/NavLink'
 
+/**
+ * The footer of the application.
+ *
+ * This component renders the footer of the application, including a
+ * link to the Discord server, FAQs, privacy policy, terms of use, and
+ * contact email.
+ *
+ * @returns {JSX.Element} The footer element.
+ */
 export default function Footer() {
   return (
     <footer className='bg-sectionDark text-sectionDarkTextSecondary border-t border-glassSurfaceHighlightBorder flex flex-col items-start justify-start px-6 py-20 gap-20'>

@@ -5,6 +5,16 @@ import NavLink from '@/app/components/Nav/NavLink'
 
 import { LuMessagesSquare } from 'react-icons/lu'
 
+/**
+ * Page for Frequently Asked Questions
+ *
+ * @remarks
+ * This page contains a list of Frequently Asked Questions about ArchiveBot.
+ * The questions are about how to use the bot, what the bot does, and how secure
+ * user data is. The page also includes links to the plans page and the discord
+ * server invite link.
+ * @returns React component
+ */
 export default async function TermsOfUse() {
   return (
     <main className='mt-[96px]'>
