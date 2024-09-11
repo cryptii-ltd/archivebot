@@ -1,6 +1,6 @@
 .outer {
     background: var(--glassSurface);
-    box-shadow: hsl(245, 63%, 60%, 35%) 0 0 15.625rem;
+    box-shadow: hsl(240, 83%, 53%, 43%) 0 0 15.625rem;
     border-radius: 2rem 2rem 0 0;
 
     margin-bottom: -12rem;

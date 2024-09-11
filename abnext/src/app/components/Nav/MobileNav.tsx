@@ -36,7 +36,7 @@ export default function MobileNav({ links, children }: MobileNavProps) {
         onClick={() => setOpen(prev => !prev)}
       />
       {open && (
-        <div className={`${style.mobileNavLinks} bg-sectionDark backdrop-filter backdrop-blur-sm`}>
+        <div className={`${style.mobileNavLinks} bg-black-900 backdrop-filter backdrop-blur-sm`}>
           {Object.entries(links).map(([index, link]) => (
             <NavLink
               href={link.link}

@@ -32,20 +32,24 @@ export default async function Plan({
   buttonText = 'Get Started',
 }: PlanProps) {
   return (
-    <div className={`${style.plan} ${bestValue && 'outline outline-1 outline-accent'} snap-center`}>
+    <div
+      className={`${style.plan} bg-plan outline outline-1 ${
+        bestValue ? 'outline-purple-500' : ' outline-black-100'
+      } snap-center`}
+    >
       <div className='grid gap-4 w-full'>
         <div className='grid gap-6 h-[168px] items-start'>
           <div className='flex flex-row justify-between items-start h-8'>
-            <span className='capitalize text-sectionDarkTextSecondary'>{type}</span>
-            {bestValue && <span className={`${style.bestValue} bg-accent`}>Best Value</span>}
+            <span className='capitalize text-textSecondary'>{type}</span>
+            {bestValue && <span className={`${style.bestValue} bg-purple-500`}>Best Value</span>}
           </div>
 
           <span className='flex gap-2 items-end justify-start '>
             <span className='font-bold text-[2.5rem] leading-10'>£{price}</span>
-            <span className='text-sectionDarkTextSecondary'>per month</span>
+            <span className='text-textSecondary'>per month</span>
           </span>
 
-          <span className='text-sectionDarkTextSecondary'>{description}</span>
+          <span className='text-textSecondary'>{description}</span>
         </div>
 
         <hr className='border-glassSurfaceHighlightBorder' />
@@ -53,7 +57,7 @@ export default async function Plan({
         <div className='grid gap-2'>
           {limits.map((limit, index) => (
             <div key={index}>
-              <span className='text-sectionDarkTextSecondary flex items-center justify-start gap-2'>
+              <span className='text-textSecondary flex items-center justify-start gap-2'>
                 <TbCircleCheckFilled size={24} />
                 <span>{limit}</span>
               </span>
@@ -67,7 +71,7 @@ export default async function Plan({
 
             <ul className='grid gap-2'>
               {inheritsFeaturesFrom && (
-                <span className='text-sectionDarkTextSecondary flex items-center justify-start gap-2'>
+                <span className='text-textSecondary flex items-center justify-start gap-2'>
                   <TbCircleCheckFilled size={24} />
                   <span>
                     All features from <b className='capitalize'>{inheritsFeaturesFrom}</b>
@@ -79,7 +83,7 @@ export default async function Plan({
                   key={index}
                   className='grid gap-2'
                 >
-                  <span className='text-sectionDarkTextSecondary grid grid-flow-col items-center justify-start gap-2'>
+                  <span className='text-textSecondary grid grid-flow-col items-center justify-start gap-2'>
                     <TbCircleCheckFilled size={24} />
                     <span>{feature}</span>
                   </span>

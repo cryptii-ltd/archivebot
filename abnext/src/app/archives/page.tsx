@@ -2,9 +2,13 @@ import { cookies } from 'next/headers'
 import Link from 'next/link'
 import getUserDetails from '@/_lib/user'
 import { getArchives } from '@/_lib/archive'
-import DeleteButton from '@/app/archives/DeleteButton'
-import Button from '@/app/components/Button'
+import DeleteArchive from '@/app/archives/DeleteArchive'
 import Section from '@/app/components/Section'
+
+import { LuMessagesSquare } from 'react-icons/lu'
+import { FiArrowRight } from 'react-icons/fi'
+import PageBadge from '../components/PageBadge'
+import NavLink from '../components/Nav/NavLink'
 
 /**
  * Page to list archives associated with the currently authenticated user.
@@ -18,21 +22,31 @@ export default async function Archives() {
   const archives = await getArchives(userData.id)
 
   return (
-    <main className='mt-[96px]'>
-      <Section>
+    <main className='mt-[81px]'>
+      <Section
+        titleBadge={
+          <PageBadge>
+            <LuMessagesSquare size={24} />
+            Archives
+          </PageBadge>
+        }
+      >
         {archives.length > 0 ? (
-          <div className='flex flex-col gap-4 justify-start'>
+          <div className='flex flex-col gap-2 justify-start'>
             {archives.map(archive => (
               <div
                 key={archive.id}
-                className='flex flex-row flex-wrap items-center justify-between gap-2'
+                className='flex flex-row flex-wrap flex-1 items-center justify-between gap-2 border border-glassSurfaceHighlightBorder p-4 rounded-xl'
               >
                 {archive.name}{' '}
                 <div className='grid grid-cols-2 items-center justify-end gap-2'>
-                  <DeleteButton archiveId={archive.id} />
+                  <DeleteArchive archiveId={archive.id} />
 
                   <Link href={`/archives/${userData.id}/${archive.uuid}`}>
-                    <Button className='w-full'>View</Button>
+                    <FiArrowRight
+                      size={24}
+                      className='cursor-pointer hover:text-accent transition ease duration-75'
+                    />
                   </Link>
                 </div>
               </div>
@@ -40,12 +54,19 @@ export default async function Archives() {
           </div>
         ) : (
           <span>
-            You don&apos;t currently have any archives. <Link href={'/invite'}>Invite the bot</Link> to your discord
-            server and start archiving!
+            You don&apos;t currently have any archives.
+            <br />
+            <a
+              href={process.env.bot_invite_link}
+              target='_blank'
+              className='text-accent'
+            >
+              Invite the bot
+            </a>{' '}
+            to your Discord server and start archiving!
           </span>
         )}
       </Section>
     </main>
   )
 }
-

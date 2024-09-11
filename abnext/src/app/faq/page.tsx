@@ -17,7 +17,7 @@ import { LuMessagesSquare } from 'react-icons/lu'
  */
 export default async function TermsOfUse() {
   return (
-    <main className='mt-[96px]'>
+    <main className='mt-[81px]'>
       <Section
         titleBadge={
           <PageBadge>

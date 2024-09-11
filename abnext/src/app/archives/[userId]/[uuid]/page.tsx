@@ -25,11 +25,23 @@ export default async function Archive({
   const user = await getUserDetails(cookies().get('session')?.value as string)
 
   if (archive === null) {
-    return <span>This archive does not exist</span>
+    return (
+      <main className='mt-[81px]'>
+        <div className='grid gap-2 p-4 h-[50dvh]'>
+          <span>This archive does not exist</span>
+        </div>
+      </main>
+    )
   }
 
   if (archive.user_id != user.id) {
-    return <span>You do not have permission to view this archive.</span>
+    return (
+      <main className='mt-[81px]'>
+        <div className='grid gap-2 p-4 h-[50dvh]'>
+          <span>You do not have permission to view this archive</span>
+        </div>
+      </main>
+    )
   }
 
   // Get the messages in the archive
@@ -37,7 +49,7 @@ export default async function Archive({
 
   // Return the list of messages
   return (
-    <main className='mt-[96px]'>
+    <main className='mt-[81px]'>
       <div className='grid gap-2 p-4'>
         {messages.map(message => (
           <p key={message.message_id}>{JSON.parse(message.content).content}</p>

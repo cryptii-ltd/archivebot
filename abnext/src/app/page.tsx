@@ -20,7 +20,7 @@ import { PiPasswordDuotone } from 'react-icons/pi'
  */
 export default async function Home() {
   return (
-    <main className='flex flex-col items-top justify-center mt-[96px]'>
+    <main className='flex flex-col items-top justify-center mt-[81px]'>
       <Hero />
 
       <Section

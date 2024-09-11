@@ -27,7 +27,7 @@ export default function NavLink({
   return (
     <Link
       href={href}
-      className={`${className} text-sectionDarkTextSecondary capitalize transition ease hover:text-sectionDarkText`}
+      className={`${className} text-textSecondary capitalize transition ease hover:text-text`}
       target={target}
       onClick={onClick}
     >

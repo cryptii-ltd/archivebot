@@ -25,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className='bg-sectionDark m-auto'>
+      <body className='bg-black-900 m-auto'>
         <Nav />
         {children}
         <Footer />

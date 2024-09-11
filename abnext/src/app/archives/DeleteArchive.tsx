@@ -1,7 +1,8 @@
 'use client'
 
 import { deleteArchive } from '@/_lib/archive'
-import Button from '@/app/components/Button'
+
+import { LuFileMinus2 } from 'react-icons/lu'
 
 interface DeleteButtonProps {
   archiveId: number
@@ -15,19 +16,16 @@ interface DeleteButtonProps {
  *
  * @returns {JSX.Element} The rendered button
  */
-export default function DeleteButton({ archiveId }: DeleteButtonProps) {
+export default function DeleteArchive({ archiveId }: DeleteButtonProps) {
   const handleClick = async () => {
     await deleteArchive(archiveId)
   }
 
   return (
-    <Button
-      type='secondary'
+    <LuFileMinus2
+      size={24}
+      className='cursor-pointer'
       onClick={handleClick}
-      className='w-full'
-    >
-      Delete
-    </Button>
+    />
   )
 }
-

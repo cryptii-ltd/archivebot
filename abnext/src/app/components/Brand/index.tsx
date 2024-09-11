@@ -15,10 +15,10 @@ export default async function Brand() {
       className={` ${style.link} flex items-center justify-start gap-2`}
     >
       <GrRobot
-        className='text-sectionDarkText'
+        className='text-text'
         size={25}
       />
-      <span className={`${style.brand} text-sectionDarkText`}>ArchiveBot</span>
+      <span className={`${style.brand} text-text`}>ArchiveBot</span>
     </NavLink>
   )
 }

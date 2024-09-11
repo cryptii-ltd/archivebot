@@ -1,6 +1,4 @@
 .plan {
-    background: var(--glassSurface);
-
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -16,19 +14,7 @@
     height: 600px;
 }
 
-/* .plan::before {
-    content: '';
-
-    background-color: red;
-    background: var(--glassSurfaceBorder);
-    border-radius: 1.5rem;
-
-    position: absolute;
-    inset: 0;
-} */
-
 .bestValue {
-    /* background: var(--glassSurface); */
     font-weight: 500;
 
     border-radius: .5rem;

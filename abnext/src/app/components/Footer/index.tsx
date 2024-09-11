@@ -13,8 +13,8 @@ import NavLink from '@/app/components/Nav/NavLink'
  */
 export default function Footer() {
   return (
-    <footer className='bg-sectionDark text-sectionDarkTextSecondary border-t border-glassSurfaceHighlightBorder flex flex-col items-start justify-start px-6 py-20 gap-20'>
-      <div className='flex flex-col items-start justify-start gap-20'>
+    <footer className='bg-black-900 text-textSecondary border-t border-grey-500 flex flex-col items-start justify-start px-6 py-20 gap-20'>
+      <div className='flex flex-row flex-wrap items-start justify-start gap-20 max-w-[100rem] m-auto w-full'>
         <Brand />
 
         <div
@@ -22,7 +22,7 @@ export default function Footer() {
           style={{ gridTemplateColumns: 'repeat(auto-fill,minmax(140px,1fr))' }}
         >
           <div className='grid items-start justify-start gap-4'>
-            <h4 className='text-sectionDarkText'>Resources</h4>
+            <h4 className='text-text'>Resources</h4>
             <div className='grid items-start justify-start gap-2'>
               <NavLink
                 href={process.env.server_invite_link as string}
@@ -35,7 +35,7 @@ export default function Footer() {
           </div>
 
           <div className='grid items-start justify-start gap-4'>
-            <h4 className='text-sectionDarkText'>Legal</h4>
+            <h4 className='text-text'>Legal</h4>
             <div className='grid items-start justify-start gap-2'>
               <NavLink href='/privacy-policy'>Privacy Policy</NavLink>
               <NavLink href='/terms-of-use'>Terms of Use</NavLink>
@@ -43,7 +43,7 @@ export default function Footer() {
           </div>
 
           <div className='grid items-start justify-start gap-4'>
-            <h4 className='text-sectionDarkText'>Contact</h4>
+            <h4 className='text-text'>Contact</h4>
             <div className='grid items-start justify-start gap-2'>
               <NavLink href='mailto:hi@cryptii.co.uk'>Hire Us</NavLink>
             </div>
@@ -51,7 +51,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <span className='text-xs'>
+      <span className='text-xs max-w-[100rem] m-auto w-full'>
         © 2024 <span style={{ fontFamily: 'Satoshi' }}>CRYPTII</span> LTD
       </span>
     </footer>

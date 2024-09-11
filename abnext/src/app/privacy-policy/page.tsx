@@ -10,7 +10,7 @@ import Section from '@/app/components/Section'
  */
 export default async function TermsOfUse() {
   return (
-    <main className='mt-[96px]'>
+    <main className='mt-[81px]'>
       <Section
         subtitle='Privacy Policy'
         extra={<p className='text-sectionDarkTextSecondary'>Last updated September 2024</p>}

@@ -15,7 +15,7 @@ export default async function Hero() {
   return (
     <section
       style={{ height: 'calc(100dvh - 96px)' }}
-      className='bg-sectionDark text-sectionDarkText flex flex-col content-top justify-start gap-20 pt-20 px-[1rem] relative overflow-hidden'
+      className='bg-black-900 text-text flex flex-col content-top justify-start gap-20 pt-20 px-[1rem] relative overflow-hidden'
     >
       <div className='flex flex-col place-items-center gap-8'>
         <h1
@@ -24,7 +24,7 @@ export default async function Hero() {
         >
           The Ultimate Discord Archiving Solution
         </h1>
-        <span className='text-center text-sectionDarkTextSecondary max-w-[40ch]'>
+        <span className='text-center text-textSecondary max-w-[40ch]'>
           Quickly archive, organize, and securely share your favourite conversations
         </span>
 
@@ -41,11 +41,8 @@ export default async function Hero() {
               Get ArchiveBot
             </Button>
           </Link>
-          <Link
-            href='/archives'
-            prefetch={false}
-          >
-            <Button type='secondary'>View Archives</Button>
+          <Link href='/faq'>
+            <Button type='secondary'>Learn More</Button>
           </Link>
         </div>
       </div>
@@ -54,4 +51,3 @@ export default async function Hero() {
     </section>
   )
 }
-
