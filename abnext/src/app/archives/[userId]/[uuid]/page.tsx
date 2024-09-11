@@ -37,10 +37,12 @@ export default async function Archive({
 
   // Return the list of messages
   return (
-    <>
-      {messages.map(message => (
-        <p key={message.message_id}>{JSON.parse(message.content).content}</p>
-      ))}
-    </>
+    <main className='mt-[96px]'>
+      <div className='grid gap-2 p-4'>
+        {messages.map(message => (
+          <p key={message.message_id}>{JSON.parse(message.content).content}</p>
+        ))}
+      </div>
+    </main>
   )
 }

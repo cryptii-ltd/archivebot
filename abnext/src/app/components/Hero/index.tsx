@@ -15,7 +15,7 @@ export default async function Hero() {
   return (
     <section
       style={{ height: 'calc(100dvh - 96px)' }}
-      className='bg-sectionDark text-sectionDarkText flex flex-col content-top justify-start gap-20 pt-[7.5rem] px-[1rem] relative overflow-hidden'
+      className='bg-sectionDark text-sectionDarkText flex flex-col content-top justify-start gap-20 pt-20 px-[1rem] relative overflow-hidden'
     >
       <div className='flex flex-col place-items-center gap-8'>
         <h1
@@ -38,7 +38,7 @@ export default async function Hero() {
           >
             <Button>
               <FaDiscord size={24} />
-              Get Started
+              Get ArchiveBot
             </Button>
           </Link>
           <Link
@@ -54,3 +54,4 @@ export default async function Hero() {
     </section>
   )
 }
+

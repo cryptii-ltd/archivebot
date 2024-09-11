@@ -24,8 +24,10 @@ export default function DeleteButton({ archiveId }: DeleteButtonProps) {
     <Button
       type='secondary'
       onClick={handleClick}
+      className='w-full'
     >
-      Delete Archive
+      Delete
     </Button>
   )
 }
+

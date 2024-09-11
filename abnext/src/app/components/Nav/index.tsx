@@ -6,8 +6,8 @@ import NavLink from '@/app/components/Nav/NavLink'
 import Button from '@/app/components/Button'
 import Brand from '@/app/components/Brand'
 import MobileNav from './MobileNav'
-
-import { FaDiscord } from 'react-icons/fa6'
+import UserDropdown from './UserDropdown'
+import getUserDetails from '@/_lib/user'
 
 const navLinks = [
   {
@@ -30,6 +30,9 @@ const navLinks = [
  * @returns A JSX element representing the navigation bar.
  */
 export async function Nav() {
+  const sessionCookie = cookies().get('session')
+  const user = await getUserDetails(sessionCookie?.value as string)
+
   return (
     <nav
       className={`${style.nav} bg-nav text-sectionDarkText border-b border-glassSurfaceHighlightBorder backdrop-filter backdrop-blur-sm p-6 flex justify-between fixed inset-x-0 z-10`}
@@ -52,22 +55,14 @@ export async function Nav() {
 
       <div className={`${style.buttons} flex items-center justify-end gap-2`}>
         <>
-          {cookies().get('session') && (
-            <a href='/logout'>
-              <Button type='secondary'>Log Out</Button>
+          {sessionCookie ? (
+            <UserDropdown user={user} />
+          ) : (
+            <a href={process.env.oAuth_url as string}>
+              <Button type='secondary'>Sign In</Button>
             </a>
           )}
         </>
-
-        <Link
-          href={process.env.bot_invite_link as string}
-          target='_blank'
-        >
-          <Button type='primary'>
-            <FaDiscord size={24} />
-            Get Started
-          </Button>
-        </Link>
       </div>
 
       <MobileNav links={navLinks}>
@@ -76,15 +71,17 @@ export async function Nav() {
           target='_blank'
           className='font-medium text-sectionDarkTextSecondary capitalize transition ease hover:text-sectionDarkText'
         >
-          Get Started
+          Get ArchiveBot
         </Link>
         <>
-          {cookies().get('session') && (
-            <a
-              href='/logout'
-              className='font-medium text-sectionDarkTextSecondary capitalize transition ease hover:text-sectionDarkText'
-            >
-              Log Out
+          {sessionCookie ? (
+            <UserDropdown
+              user={user}
+              mobile
+            />
+          ) : (
+            <a href={process.env.oAuth_url as string}>
+              <Button type='secondary'>Sign In</Button>
             </a>
           )}
         </>
@@ -92,3 +89,4 @@ export async function Nav() {
     </nav>
   )
 }
+

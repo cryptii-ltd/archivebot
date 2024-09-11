@@ -33,21 +33,24 @@ export default async function Section({
       className={`${className ? className : ''} bg-sectionDark text-sectionDarkText max-w-[100rem] m-auto w-full`}
     >
       <div className='flex flex-col items-top justify-start gap-20 px-6 py-20 w-full'>
-        <div className='grid gap-8'>
-          {titleBadge}
-          {subtitle && (
-            <h2
-              className='m-0'
-              style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}
-            >
-              {subtitle}
-            </h2>
-          )}
-          {extra}
-        </div>
+        {titleBadge ||
+          (subtitle && (
+            <div className='grid gap-8'>
+              {subtitle && (
+                <h2
+                  className='m-0'
+                  style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}
+                >
+                  {subtitle}
+                </h2>
+              )}
+              {extra}
+            </div>
+          ))}
 
         {children}
       </div>
     </section>
   )
 }
+
