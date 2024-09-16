@@ -30,9 +30,9 @@ export default async function Section({
   return (
     <section
       id={id}
-      className={`${className ? className : ''} bg-black-900 text-text max-w-[100rem] m-auto w-full`}
+      className={`${className ? className : ''} bg-black-900 text-text w-full`}
     >
-      <div className='flex flex-col items-top justify-start gap-20 px-6 py-20 w-full'>
+      <div className='flex flex-col items-top justify-start gap-20 px-6 py-20 w-full max-w-[100rem] m-auto '>
         {(titleBadge || subtitle) && (
           <div className='grid gap-8'>
             {titleBadge && titleBadge}
