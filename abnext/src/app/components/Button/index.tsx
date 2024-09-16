@@ -1,5 +1,5 @@
 interface ButtonProps {
-  type?: 'primary' | 'secondary' | 'accent'
+  type?: 'primary' | 'secondary' | 'accent' | 'accentOutline'
   onClick?: () => void
   children?: any
   className?: string
@@ -7,7 +7,7 @@ interface ButtonProps {
 
 /**
  * The button component
- * @param {{ type?: 'primary' | 'secondary' | 'accent', onClick?: () => void, children?: any, className?: string }} props
+ * @param {{ type?: 'primary' | 'secondary' | 'accent' | 'accentOutline', onClick?: () => void, children?: any, className?: string }} props
  * The properties for the button component
  * @returns {JSX.Element} The rendered button
  */
@@ -28,7 +28,12 @@ export default function Button({ type = 'primary', onClick, children, className 
 
     case 'accent':
       backgroundColor = 'bg-purple-500 hover:bg-purple-600 active:bg-purple-700'
-      textColor = 'text-white-700 hover:text-text'
+      textColor = 'text-white-500 hover:text-text'
+      break
+
+    case 'accentOutline':
+      backgroundColor = 'bg-transparent border border-purple-500 hover:bg-purple-600 active:bg-purple-700'
+      textColor = 'text-purple-500 hover:text-text'
       break
   }
 

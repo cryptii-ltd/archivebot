@@ -60,7 +60,7 @@ export async function Nav() {
               <UserDropdown user={user} />
             ) : (
               <a href={process.env.oAuth_url as string}>
-                <Button type='secondary'>Sign In</Button>
+                <Button type='accentOutline'>Sign In</Button>
               </a>
             )}
           </>
