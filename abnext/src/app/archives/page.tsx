@@ -8,7 +8,6 @@ import Section from '@/app/components/Section'
 import { LuMessagesSquare } from 'react-icons/lu'
 import { FiArrowRight } from 'react-icons/fi'
 import PageBadge from '../components/PageBadge'
-import NavLink from '../components/Nav/NavLink'
 
 /**
  * Page to list archives associated with the currently authenticated user.

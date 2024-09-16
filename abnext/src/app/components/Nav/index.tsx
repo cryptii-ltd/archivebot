@@ -67,13 +67,6 @@ export async function Nav() {
         </div>
 
         <MobileNav links={navLinks}>
-          <Link
-            href={process.env.bot_invite_link as string}
-            target='_blank'
-            className='font-medium text-textSecondary capitalize transition ease hover:text-text'
-          >
-            Get ArchiveBot
-          </Link>
           <>
             {sessionCookie ? (
               <UserDropdown
