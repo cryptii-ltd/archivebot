@@ -13,10 +13,7 @@ import { FaDiscord } from 'react-icons/fa6'
  */
 export default async function Hero() {
   return (
-    <section
-      style={{ height: 'calc(100dvh - 96px)' }}
-      className='bg-black-900 text-text flex flex-col content-top justify-start gap-20 pt-20 px-[1rem] relative overflow-hidden'
-    >
+    <section className='bg-black-900 text-text flex flex-col content-top justify-start gap-20 pb-20 pt-[81px] px-[1rem]'>
       <div className='flex flex-col place-items-center gap-8'>
         <h1
           className='text-center max-w-[20ch]'

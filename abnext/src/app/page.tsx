@@ -25,7 +25,7 @@ export default async function Home() {
 
       <Section
         id='features'
-        className='border-t border-glassSurfaceHighlightBorder'
+        className='border-t border-grey-500'
         titleBadge={
           <PageBadge>
             <TbDiamondFilled size={24} />
@@ -151,3 +151,4 @@ export default async function Home() {
     </main>
   )
 }
+

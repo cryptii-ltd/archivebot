@@ -1,5 +1,6 @@
 .nav {
     container-type: inline-size;
+    height: 81px;
 }
 
 .mobileNav {
@@ -46,7 +47,7 @@
 }
 
 .mobileNavLinks {
-    height: calc(100dvh - 74px);
+    height: calc(100dvh - 81px);
 
     display: flex;
     flex-direction: column;
@@ -71,7 +72,7 @@
     }
 }
 
-@container (width > 650px) {
+@container (width >=650px) {
 
     .mobileNav,
     .MobileNavLinks {

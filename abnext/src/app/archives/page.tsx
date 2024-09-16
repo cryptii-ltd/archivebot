@@ -36,7 +36,7 @@ export default async function Archives() {
             {archives.map(archive => (
               <div
                 key={archive.id}
-                className='flex flex-row flex-wrap flex-1 items-center justify-between gap-2 border border-glassSurfaceHighlightBorder p-4 rounded-xl'
+                className='flex flex-row flex-wrap flex-1 items-center justify-between gap-2 border border-grey-500 p-4 rounded-xl'
               >
                 {archive.name}{' '}
                 <div className='grid grid-cols-2 items-center justify-end gap-2'>

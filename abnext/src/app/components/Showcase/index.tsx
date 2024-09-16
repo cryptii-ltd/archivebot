@@ -9,8 +9,8 @@ import style from './style.module.css'
  */
 export default function Showcase() {
   return (
-    <div className={style.outer}>
-      <div className={`${style.inner} bg-black-900`}>Screenshot of Archives UI</div>
+    <div className={style.container}>
+      <div className={`${style.outer} bg-nav border border-black-100`}></div>
     </div>
   )
 }

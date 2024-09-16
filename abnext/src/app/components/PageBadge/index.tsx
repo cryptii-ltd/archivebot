@@ -10,7 +10,7 @@ interface PageBadgeProps {
  */
 export default async function PageBadge({ children }: PageBadgeProps) {
   return (
-    <span className='bg-black-800 cursor-default w-fit py-2 px-4 flex items-center justify-center gap-2 rounded-lg'>
+    <span className='bg-black-600 cursor-default w-fit py-2 px-4 flex items-center justify-center gap-2 rounded-lg'>
       {children}
     </span>
   )

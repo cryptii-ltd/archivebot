@@ -52,7 +52,7 @@ export default async function Plan({
           <span className='text-textSecondary'>{description}</span>
         </div>
 
-        <hr className='border-glassSurfaceHighlightBorder' />
+        <hr className='border-black-100' />
 
         <div className='grid gap-2'>
           {limits.map((limit, index) => (
@@ -67,7 +67,7 @@ export default async function Plan({
 
         {features && (
           <>
-            <hr className='border-glassSurfaceHighlightBorder' />
+            <hr className='border-black-100' />
 
             <ul className='grid gap-2'>
               {inheritsFeaturesFrom && (
@@ -95,7 +95,7 @@ export default async function Plan({
       </div>
 
       <Button
-        type='secondary'
+        type={bestValue ? 'accent' : 'secondary'}
         className='w-full'
       >
         {buttonText}
