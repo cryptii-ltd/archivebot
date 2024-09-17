@@ -10,6 +10,9 @@ import prisma from "./prisma"
  * @returns {Promise<Archive[]>} - A promise that resolves to an array of Archive objects
  */
 export async function getArchives(userId: string) {
+    const sleep = async () => new Promise(resolve => setTimeout(resolve, 4000))
+
+    await sleep()
     const archives = await prisma.archives.findMany({
         where: {
             user_id: userId,
