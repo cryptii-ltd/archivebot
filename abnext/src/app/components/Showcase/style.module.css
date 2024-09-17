@@ -9,10 +9,21 @@
 
 .outer {
     box-shadow: hsl(245, 83%, 53%, 43%) 0 -5rem 15.625rem;
+    /* animation: pulsingGlow 2s infinite alternate; */
     border-radius: 2rem;
 
     max-width: 100rem;
     width: 60%;
+}
+
+@keyframes pulsingGlow {
+    0% {
+        box-shadow: hsl(245, 83%, 53%, 43%) 0 -5rem 15.625rem;
+    }
+
+    100% {
+        box-shadow: hsl(245, 83%, 53%, 53%) 0 -5rem 15.625rem -2rem;
+    }
 }
 
 @container (width < 664px) {

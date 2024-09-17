@@ -14,10 +14,6 @@
     height: 600px;
 }
 
-.plan[data-best] {
-    background-color: hsl(245, 83%, 63%, 10%);
-}
-
 .bestValue {
     font-weight: 500;
 

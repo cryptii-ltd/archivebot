@@ -32,7 +32,7 @@ export default function Button({ type = 'primary', onClick, children, className 
       break
 
     case 'accentOutline':
-      backgroundColor = 'bg-transparent border border-purple-500 hover:bg-purple-600 active:bg-purple-700'
+      backgroundColor = 'bg-purple-500-10 border border-purple-500 hover:bg-purple-600 active:bg-purple-700'
       textColor = 'text-purple-500 hover:text-text'
       break
   }

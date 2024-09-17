@@ -1,7 +1,6 @@
 import style from './style.module.css'
 import NavLink from '@/app/components/Nav/NavLink'
-
-import { GrRobot } from 'react-icons/gr'
+import Image from 'next/image'
 
 /**
  * A component that renders a link to the homepage with a brand icon and text.
@@ -14,9 +13,11 @@ export default async function Brand() {
       href='/'
       className={` ${style.link} flex items-center justify-start gap-2`}
     >
-      <GrRobot
-        className='text-text'
-        size={25}
+      <Image
+        width={18}
+        height={18}
+        src='/logo.svg'
+        alt='Logo'
       />
       <span className={`${style.brand} text-text`}>ArchiveBot</span>
     </NavLink>

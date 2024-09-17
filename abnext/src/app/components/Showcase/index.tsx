@@ -7,10 +7,10 @@ import style from './style.module.css'
  * @example
  * <Showcase />
  */
-export default function Showcase() {
+export default async function Showcase() {
   return (
     <div className={style.container}>
-      <div className={`${style.outer} bg-nav border border-black-100`}></div>
+      <div className={`${style.outer} bg-nav border border-black-100`} />
     </div>
   )
 }

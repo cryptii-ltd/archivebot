@@ -34,9 +34,8 @@ export default async function Plan({
   return (
     <div
       className={`${style.plan} bg-plan outline outline-1 ${
-        bestValue ? 'outline-purple-500' : ' outline-black-100'
+        bestValue ? 'outline-purple-500 bg-purple-500-10' : ' outline-black-100'
       } snap-center`}
-      data-best={bestValue}
     >
       <div className='grid gap-4 w-full'>
         <div className='grid gap-6 h-[168px] items-start'>

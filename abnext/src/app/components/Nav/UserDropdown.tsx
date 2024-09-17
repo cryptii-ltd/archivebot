@@ -5,6 +5,8 @@ import Image from 'next/image'
 import { User } from '@/app/types/user'
 import NavLink from './NavLink'
 
+import { motion } from 'framer-motion'
+
 import { LuMessagesSquare } from 'react-icons/lu'
 import { HiLogout } from 'react-icons/hi'
 import { RiArrowDropDownLine } from 'react-icons/ri'
@@ -48,9 +50,11 @@ export default function UserDropdown({ user, mobile }: UserDropdownProps) {
 
 function DropdownMenu({ onMouseLeave }: { onMouseLeave: () => void }) {
   return (
-    <div
+    <motion.div
       className='grid items-start justify-start gap-1 p-2 absolute w-max top-[76px] rounded-xl bg-black-800 border border-black-600'
       onMouseLeave={onMouseLeave}
+      initial={{ opacity: 0.8, translateY: '1rem' }}
+      animate={{ opacity: 1, translateY: 0 }}
     >
       <DropDownItem href='/archives'>
         <LuMessagesSquare size={24} />
@@ -64,7 +68,7 @@ function DropdownMenu({ onMouseLeave }: { onMouseLeave: () => void }) {
         <HiLogout size={24} />
         Sign Out
       </DropDownItem>
-    </div>
+    </motion.div>
   )
 }
 
