@@ -104,7 +104,7 @@ export default async function Home() {
         subtitle='Choose a plan that fits you'
       >
         <div>
-          <div className='flex flex-row items-center justify-start gap-4 py-4 -mx-6 w-[calc(100% + 24px)] px-6 overflow-x-auto snap-mandatory snap-x'>
+          <div className='flex flex-row items-center justify-start gap-6 py-4 -mx-6 w-[calc(100% + 24px)] px-6 overflow-x-auto snap-mandatory snap-x'>
             <Plan
               type='basic'
               price={0}
@@ -151,4 +151,3 @@ export default async function Home() {
     </main>
   )
 }
-

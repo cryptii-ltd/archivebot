@@ -1,4 +1,8 @@
-# Discord Archive Bot Frontend
+<p align='center'>
+    <img src="./public/icon.png" width=64>
+</p>
+
+<h1 align=center>ArchiveBot (Next)</h1>
 
 This is the frontend for the **Discord Archive Bot**, a platform that allows users to seamlessly archive, manage, and share their Discord conversations. This project is built with [Next.js](https://nextjs.org/) and offers a clean and user-friendly interface for viewing and organizing archived messages.
 
@@ -25,7 +29,16 @@ To get started with development, follow these steps:
     pnpm install
     ```
 
-3.  **Setup the Database:**
+3.  **Setup Environment Files:**
+
+    You'll need to configure the `.env` and `.env.local` files for Prisma and Next.js, respectively. Examples are provided in the repository (`.env.example` and `.env.local.example`), so copy these files and fill in the necessary details:
+
+    ```
+    cp .env.example .env
+    cp .env.local.example .env.local
+    ```
+
+4.  **Setup the Database:**
 
     Before running the development server, you need to pull the existing database schema and generate the necessary Prisma client:
 
@@ -34,7 +47,7 @@ To get started with development, follow these steps:
     npx prisma generate
     ```
 
-4.  **Run the Development Server:**
+5.  **Run the Development Server:**
 
     Start the development server:
 
@@ -50,7 +63,7 @@ To get started with development, follow these steps:
 
     Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-5.  **Migrate Existing Archives:**
+6.  **Migrate Existing Archives:**
 
     If you need to migrate current archives to the new relational database schema, use the provided migration script:
 
@@ -62,9 +75,9 @@ To get started with development, follow these steps:
     python main.py
     ```
 
-    You'll need to configure the .env.local and .env files in the /abnext directory. Examples are provided. You will have to do the same for the .env file required in the migration directory. Again, an example is available there for you 😊
+    Remember to set up the `.env` file in the `migration` directory using the provided `.env.example` file.
 
-6.  **Build the Project:**
+7.  **Build the Project:**
 
     Once everything is set up, you can build the project for production:
 
@@ -75,7 +88,6 @@ To get started with development, follow these steps:
     # or
     pnpm build
     ```
-
 
 ## Features
 
@@ -109,7 +121,6 @@ Need help or have feedback? Join our [Discord Server](https://discord.gg/FJ93j2f
 **The Ultimate Discord Message Archiving Solution**
 
 *Quickly archive, organize, and securely share your favorite conversations.*
-
 
 - - -
 

@@ -17,7 +17,7 @@ export default async function Hero() {
       <div className='flex flex-col place-items-center gap-8'>
         <h1
           className='text-center max-w-[20ch]'
-          style={{ fontSize: 'clamp(2.5rem, 4vw, 3.5rem)' }}
+          style={{ fontSize: 'clamp(2.2rem, 4vw, 3.5rem)' }}
         >
           The Ultimate Discord Archiving Solution
         </h1>

@@ -54,11 +54,11 @@ export default function Button({ type = 'primary', onClick, children, className 
         items-center
         py-3
         px-4
-        rounded-lg
+        rounded-2xl
         transition
         ease
         duration-75
-        ${className}
+        ${className ? className : ''}
       `}
       onClick={onClick}
     >
@@ -66,3 +66,4 @@ export default function Button({ type = 'primary', onClick, children, className 
     </button>
   )
 }
+

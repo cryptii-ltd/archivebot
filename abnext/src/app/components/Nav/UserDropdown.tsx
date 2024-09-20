@@ -53,7 +53,7 @@ function DropdownMenu({ onMouseLeave }: { onMouseLeave: () => void }) {
     <motion.div
       className='grid items-start justify-start gap-1 p-2 absolute w-max top-[76px] rounded-xl bg-black-800 border border-black-600'
       onMouseLeave={onMouseLeave}
-      initial={{ opacity: 0.8, translateY: '1rem' }}
+      initial={{ opacity: 0.8, translateY: '-.25rem' }}
       animate={{ opacity: 1, translateY: 0 }}
     >
       <DropDownItem href='/archives'>

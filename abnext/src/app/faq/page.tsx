@@ -71,15 +71,6 @@ export default async function TermsOfUse() {
           </li>
 
           <li>
-            <span className='text-3xl font-semibold'>What happens if I delete an archive?</span>
-            <p className='mt-1'>
-              When you delete an archive, it&apos;s marked as deleted but not immediately removed. The archive remains
-              stored on our servers and will only be fully removed if we need the space. This measure helps prevent
-              abuse of our platform, as we&apos;ve encountered in the past.
-            </p>
-          </li>
-
-          <li>
             <span className='text-3xl font-semibold'>Do you track my activity or use my data for advertising?</span>
             <p className='mt-1'>
               No, we do not track your activity or use your data for advertising. We only store cookies for

@@ -41,7 +41,6 @@ export default function MobileNav({ links, children }: MobileNavProps) {
             <NavLink
               href={link.link}
               key={index}
-              className='font-medium'
               onClick={() => setOpen(false)}
             >
               {link.name}
