@@ -55,15 +55,17 @@ def main() -> None:
             archive['decrypted_data'] = decrypt(archive.get('encrypted_data').decode(), archive.get('key'))
 
     archives_to_migrate = [archive for archive in archives.values() if 'decrypted_data' in archive.keys()] # These are archives made post the fran-fuck-aggedon
-    print(f'Found {len(archives_to_migrate)} archives to migrate...')
+    print(f'Found {len(archives_to_migrate)} archives to migrate.')
 
     migrated_archives = 0
     total_message_count = 0
 
     # Finally, migrate the archive over
-    for archive in archives_to_migrate:
-        with connect('194.164.20.136', 'abnext') as conn:
-            cur = conn.cursor()
+    print('Running migration...')
+    with connect('194.164.20.136', 'abnext') as conn:
+        cur = conn.cursor()
+
+        for archive in archives_to_migrate:
             # Verify the archive doesn't already exist
             cur.execute(
                 'SELECT count(*) FROM archives WHERE server_id=%s AND user_id=%s AND name=%s',
@@ -120,7 +122,7 @@ def main() -> None:
                 for message in messages.get('messages')
             ]
 
-            print('  - Committing messages to database...')
+            print('  - Committing to database...')
 
             cur.executemany(
                 'INSERT INTO messages(archive_id, message_id, author, author_id, avatar_hash, content, created_at) VALUES (%s, %s, %s, %s, %s, %s, %s)',
