@@ -1,13 +1,14 @@
 import style from './style.module.css'
 
 import { cookies } from 'next/headers'
-import Link from 'next/link'
 import NavLink from '@/app/components/Nav/NavLink'
 import Button from '@/app/components/Button'
 import Brand from '@/app/components/Brand'
 import MobileNav from './MobileNav'
 import UserDropdown from './UserDropdown'
 import getUserDetails from '@/_lib/user'
+
+import { FaDiscord } from 'react-icons/fa6'
 
 const navLinks = [
   {
@@ -60,7 +61,9 @@ export async function Nav() {
               <UserDropdown user={user} />
             ) : (
               <a href={process.env.oAuth_url as string}>
-                <Button type='accentOutline'>Sign In</Button>
+                <Button type='accent'>
+                  <FaDiscord size={24} /> Sign In
+                </Button>
               </a>
             )}
           </>

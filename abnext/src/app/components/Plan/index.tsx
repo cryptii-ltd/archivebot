@@ -79,7 +79,7 @@ export default async function Plan({
                 </span>
               )}
               {features.map((feature, index) => (
-                <li
+                <span
                   key={index}
                   className='grid gap-2'
                 >
@@ -87,7 +87,7 @@ export default async function Plan({
                     <TbCircleCheckFilled size={24} />
                     <span>{feature}</span>
                   </span>
-                </li>
+                </span>
               ))}
             </ul>
           </>

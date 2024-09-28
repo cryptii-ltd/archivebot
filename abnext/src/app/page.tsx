@@ -137,11 +137,7 @@ export default async function Home() {
               price={5}
               description='Unlimited archiving and full customization'
               limits={['Unlimited Archives', 'No Message limit']}
-              features={[
-                'Archive your entire Discord server with one command',
-                'Vote on feature requests',
-                'Legacy archive upgrades',
-              ]}
+              features={['Archive your server with one command', 'Vote on feature requests', 'Legacy archive upgrades']}
               inheritsFeaturesFrom='pro'
               buttonText='Upgrade to Max'
             />

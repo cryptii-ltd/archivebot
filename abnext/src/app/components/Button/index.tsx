@@ -12,7 +12,7 @@ interface ButtonProps {
  * @returns {JSX.Element} The rendered button
  */
 export default function Button({ type = 'primary', onClick, children, className }: ButtonProps) {
-  let backgroundColor = 'bg-white-500 hover:bg-white-700'
+  let backgroundColor = 'bg-white-500 hover:bg-white-800'
   let textColor = 'text-black-900'
 
   /**
@@ -21,18 +21,12 @@ export default function Button({ type = 'primary', onClick, children, className 
    */
   switch (type) {
     case 'secondary':
-      backgroundColor =
-        'bg-transparent border border-2 border-black-500 hover:bg-black-500 active:bg-black-600 active:border-black-600'
-      textColor = 'text-white-900 hover:text-text'
+      backgroundColor = 'bg-white-500-5 hover:bg-white-700'
+      textColor = 'text-white-900 hover:text-black-900'
       break
 
     case 'accent':
-      backgroundColor = 'bg-purple-500 hover:bg-purple-600 active:bg-purple-700'
-      textColor = 'text-white-500 hover:text-text'
-      break
-
-    case 'accentOutline':
-      backgroundColor = 'bg-purple-500-10 border border-purple-500 hover:bg-purple-600 active:bg-purple-700'
+      backgroundColor = 'bg-purple-500-10 hover:bg-purple-500 active:bg-purple-700'
       textColor = 'text-purple-500 hover:text-text'
       break
   }
@@ -66,4 +60,3 @@ export default function Button({ type = 'primary', onClick, children, className 
     </button>
   )
 }
-

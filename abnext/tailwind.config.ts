@@ -12,6 +12,7 @@ const config: Config = {
       plan: 'hsl(0, 0%, 100%, 1%)',
 
       'white-500': 'hsl(0, 0%, 90%)',
+      'white-500-5': 'hsl(0, 0%, 90%, 5%)',
       'white-600': 'hsl(0, 0%, 85%)',
       'white-700': 'hsl(0, 0%, 80%)',
       'white-800': 'hsl(0, 0%, 75%)',
@@ -39,6 +40,8 @@ const config: Config = {
       'purple-700': 'hsl(245, 63%, 53%)',
       'purple-800': 'hsl(245, 53%, 48%)',
       'purple-900': 'hsl(245, 43%, 43%)',
+
+      'ultrablue': 'hsl(245, 83%, 53%)',
     },
     extend: {},
   },
