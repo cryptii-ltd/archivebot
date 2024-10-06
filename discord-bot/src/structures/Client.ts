@@ -1,71 +1,67 @@
-import { ApplicationCommandDataResolvable, Client, ClientEvents, Collection, GatewayIntentBits } from "discord.js"
-import { CommandType } from "../typings/Command"
-import { promisify } from "util"
-import { Event } from "./Event"
-import glob from 'glob'
-import { RegisterCommandOptions } from "../typings/client";
-const globPromise = promisify(glob);
-
+import { ApplicationCommandDataResolvable, Client, ClientEvents, ClientPresence, Collection, GatewayIntentBits } from "npm:discord.js";
+import { CommandType } from "../typings/Command.ts";
+import { RegisterCommandOptions } from "../typings/client.ts";
+import { expandGlob } from "@std/fs/expand-glob"
+import { getDirname } from "../functions/utilt.ts";
+import { Event } from "./Event.ts";
 export class ExtendedClient extends Client {
-    commands: Collection<string, CommandType> = new Collection();
+  commands: Collection<string, CommandType> = new Collection();
 
-    constructor() {
-        super({ intents: [
-            GatewayIntentBits.Guilds,
-            GatewayIntentBits.GuildMessages,
-            GatewayIntentBits.MessageContent,
-            GatewayIntentBits.GuildMembers,
-            GatewayIntentBits.DirectMessages,
-            GatewayIntentBits.MessageContent,
-            GatewayIntentBits.GuildMessageReactions,
-            GatewayIntentBits.GuildMessageTyping
-        ]})
+  constructor() {
+    super({intents: [
+      GatewayIntentBits.Guilds,
+      GatewayIntentBits.GuildMessages,
+      GatewayIntentBits.MessageContent,
+      GatewayIntentBits.GuildMembers,
+      GatewayIntentBits.DirectMessages,
+      GatewayIntentBits.GuildMessageReactions,
+      GatewayIntentBits.GuildMessageTyping
+    ]})
+  }
+
+  start() {
+    this.registerModules()
+    this.login(Deno.env.get("botToken"))
+  }
+
+  async importFile(filePath:string) {
+    return (await import(filePath))?.default
+  }
+
+  registerCommands({commands, guildId}: RegisterCommandOptions) {
+    if (guildId) {
+      this.guilds.cache.get(guildId)?.commands.set(commands);
+      console.log(`Registering Guild Commands: ${guildId}`)
+    } else {
+      this.application?.commands.set(commands);
+      console.log(`Registering Global Commands.`)
     }
+  }
 
-    start() {
-        this.registerModules()
-        this.login(process.env.botToken)
-    }
+  async registerModules() {
+    const slashCommands: ApplicationCommandDataResolvable[] = [];
+    const __dirname = getDirname()
+    const commandFiles = await Array.fromAsync(expandGlob(`${__dirname}/../commands/*/*{.ts}`))
+    commandFiles.forEach(async commandFile => {
+      const command: CommandType = await this.importFile(commandFile.path)
+      console.log({ command })
+      if (!command.name) return;
+      this.commands.set(command.name, command)
+      slashCommands.push(command);
+    })
 
-    async importFile(filePath:string) {
-        return (await import(filePath))?.default
-    }
+    this.on("ready", () => {
+      this.registerCommands({
+        commands: slashCommands,
+        guildId: Deno.env.get("guildId")
+      })
+    })
 
-    async registerCommands({ commands, guildId }: RegisterCommandOptions) {
-        if (guildId) {
-            this.guilds.cache.get(guildId)?.commands.set(commands);
-            console.log(`Registering Guild Specific Commands: ${guildId}`);
-        } else {
-            this.application?.commands.set(commands);
-            console.log(`Registering Global Commands.`)
-        }
-    }
-
-    async registerModules() {
-        const slashCommands: ApplicationCommandDataResolvable[] = [];
-        const commandFiles = await globPromise(`${__dirname}/../commands/*/*{.ts,.js}`);
-        commandFiles.forEach(async filePath => {
-            const command: CommandType = await this.importFile(filePath);
-            console.log({ command });
-            if (!command.name) return;
-            this.commands.set(command.name, command)
-            slashCommands.push(command);
-        });
-
-        this.on("ready", () => {
-            this.registerCommands({
-                commands: slashCommands,
-                guildId: process.env.guildId
-            });
-        });
-
-        const eventFiles = await globPromise(
-            `${__dirname}/../events/*{.ts,.js}`
-        );
-        eventFiles.forEach(async filePath => {
-            const event: Event<keyof ClientEvents> = await this.importFile(filePath);
-            this.on(event.event, event.run)
-            console.log(event)
-        })
-    }
+    const eventFiles = await Array.fromAsync(expandGlob(`${__dirname}/../events/*{.ts}`))
+    eventFiles.forEach(async eventFile => {
+      const event: Event<keyof ClientEvents> = await this.importFile(eventFile.path)
+      this.on(event.event, event.run)
+      console.log(event)
+    })
+  }
 }
