@@ -84,6 +84,10 @@ def main() -> None:
             migrated_archives += 1
             print(f'Migrating: {ast.literal_eval(archive.get("decrypted_data")).get("guild_name")}/{archive.get("name")}...')
 
+            if len(ast.literal_eval(archive.get('decrypted_data')).get('messages')) == 0:
+                print('  - No messages in archive. Skipping...')
+                continue
+
             cur.execute(
                 'INSERT IGNORE INTO archives(server_id, uuid, server_name, channel_name, user_id, name, created_at) VALUES (%s, %s, %s, %s, %s, %s, %s)',
                 (
