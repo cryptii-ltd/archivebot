@@ -13,16 +13,16 @@ import getUserDetails from '@/_lib/user'
  * @param {string} props.params.uuid - Archive UUID
  * @param {Object} [props.searchParams] - Search parameters
  */
-export default async function Archive({
-  params,
-  searchParams,
-}: {
-  params: { userId: string; uuid: string }
-  searchParams?: { [key: string]: string | string[] | undefined }
-}) {
+export default async function Archive(
+  props: {
+    params: Promise<{ userId: string; uuid: string }>
+    searchParams?: Promise<{ [key: string]: string | string[] | undefined }>
+  }
+) {
+  const params = await props.params;
   // Get the archive
   const archive = await getArchive(params.userId, params.uuid)
-  const user = await getUserDetails(cookies().get('session')?.value as string)
+  const user = await getUserDetails((await cookies()).get('session')?.value as string)
 
   if (archive === null) {
     return (

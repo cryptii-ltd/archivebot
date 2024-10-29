@@ -45,7 +45,7 @@ export default async function middleware(request: NextRequest) {
 
     // Verify the session for any path that starts with '/archive'
     if (path.includes('/archive')) {
-        const session = cookies().get('session')
+        const session = (await cookies()).get('session')
         const validSession = await verifySession(session?.value as string)
 
         if (!validSession) {

@@ -17,7 +17,7 @@ import PageBadge from '@/app/components/PageBadge'
  * @returns The page component.
  */
 export default async function ArchivesPage() {
-  const userData = await getUserDetails(cookies().get('session')!.value as string)
+  const userData = await getUserDetails((await cookies()).get('session')!.value as string)
 
   return (
     <main className='mt-[81px]'>

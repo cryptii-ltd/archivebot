@@ -31,7 +31,7 @@ const navLinks = [
  * @returns A JSX element representing the navigation bar.
  */
 export async function Nav() {
-  const sessionCookie = cookies().get('session')
+  const sessionCookie = (await cookies()).get('session')
   const user = await getUserDetails(sessionCookie?.value as string)
 
   return (
